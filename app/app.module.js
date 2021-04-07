@@ -17,8 +17,10 @@ angular.module('aopApp').controller("cAopApp", ['$scope', '$rootScope' , '$http'
                 'Accept': "application/json;odata=verbose", 
                 'Access-Control-Allow-Origin': '*' 
             },
-            // mode: 'cors',
-            // credentials: 'include'
+            dataType: "jsonp",
+            withCredentials: true,
+            mode: 'cors',
+            credentials: 'include'
         }).then(function successCallback(response) {
             let res = response.data.data.d
             // console.log("Isi DATA Sharepoint = ", res);
