@@ -15,7 +15,7 @@ angular.module('aopApp').controller("cAopApp", ['$scope', '$rootScope' , '$http'
             url: 'https://mylonsum.londonsumatra.com/_api/sp.userprofiles.peoplemanager/GetMyProperties',
             headers: { 
                 'Accept': "application/json;odata=verbose", 
-                'Access-Control-Allow-Origin': 'https://mylonsum.londonsumatra.com' 
+                'Access-Control-Allow-Origin': '*' 
             },
             // mode: 'cors',
             // credentials: 'include'
@@ -44,7 +44,8 @@ angular.module('aopApp').controller("cAopApp", ['$scope', '$rootScope' , '$http'
                 }
             }
         }, function errorCallback(response) {
-            errorResponse("SP User")
+            // errorResponse("SP User")
+            console.log(response);
         })
     }
     getSPUserProfile()
