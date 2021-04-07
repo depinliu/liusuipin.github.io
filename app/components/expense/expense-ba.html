@@ -1,0 +1,426 @@
+<div class="mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid px-5">
+            <a class="navbar-brand" href="/">
+                <img src="../../../assets/media/logo/logo-mylonsum-baru-revisi.png" width="130" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <div class="row">
+                        <div class="col-auto position-relative ms-auto" ng-hide="userData.role !== 2">
+                            <div class="dropdown">
+                                <input type="text" readonly name="" id="baList" class="form-control bg-white form-control-sm cursor-pointer dropdown-toggle" ng-model="selectedBaName" ng-click="baListToggle()" data-bs-toggle="dropdown" style="width: 380px;">
+                                <ion-icon name="chevron-down-outline" class="position-absolute cursor-pointer" style="right: 15px; top: 8px;"></ion-icon>
+                                <div class="dropdown-menu border-0 p-0" aria-labelledby="baList">
+                                    <div class="card position-absolute mt-2" style="z-index: 3; max-height: 300px; overflow: auto; width: 380px;">
+                                        <div class="card-header sticky-top bg-light">
+                                        <input type="search" name="" id="" class="form-control form-control-sm" placeholder="Search business area..." ng-model="searchBa" autofocus>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row" ng-repeat="ba in baData | filter: searchBa">
+                                                <div class="col cursor-pointer py-1 font-14 balist" ng-click="selectBa(ba)">{{ba.bacode}} - {{ba.estateName}}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto" ng-class="{'ms-auto': userData.role !== 2}">
+                            <select class="form-select form-select-sm" ng-model="selectedMonth" ng-options="m.value as m.month for m in months" ng-change="filterExpense(selectedMonth)">
+                                <option value="" disabled>-- Choose Month --</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-select form-select-sm" ng-model="selectedYear" ng-options="y.value as y.value for y in years" ng-change="filterExpense(selectedYear)">
+                                <option value="">-- Choose Year --</option>
+                            </select>
+                        </div>
+                        <div class="col-auto">
+                            <input type="search" ng-model="searchAll" class="form-control form-control-sm" placeholder="Search...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-5">
+        <div class="row my-3">
+            <div class="col-auto">
+                <h3 ng-repeat="ba in baData" class="my-0" ng-if="ba.bacode === userData.baCode">{{ba.bacode}} - {{ba.estateName}}</h3>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-auto my-auto">
+                <button type="button" class="btn lonsum-btn-primary fw-bold" ng-click="showModalNewExpense(1)">
+                    + {{submissionTypeTitle}}
+                </button>
+            </div>
+
+            <div class="col-auto ms-auto">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="card bg-light">
+                            <div class="card-body py-1">
+                                <div class="row">
+                                    <!-- <div class="col-auto">
+                                        <small ng-repeat="m in months" ng-if="m.value === selectedMonth">Total Balance in <span class="fw-bold">{{m.month}} {{selectedYear}}</span></small>
+                                        <h4 class="mb-0 p-0 mt-0">Rp. {{sumTotalMonthExpense(selectedMonth) | currency:"":0}}</h4>
+                                    </div> -->
+                                    <div class="col-auto text-end">
+                                        <small ng-repeat="m in months" ng-if="m.value === selectedMonth">Remaining Balance <span class="fw-bold">({{m.month}})</span></small>
+                                        <h4 class="mb-0 p-0 mt-0 lonsum-text-primary">Rp. {{sumTotalMonthExpense(selectedMonth) - sumTotalMonth() | currency:"":0}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="card bg-light">
+                            <div class="card-body py-1">
+                                <div class="row">
+                                    <!-- <div class="col-auto">
+                                        <small>Total Balance in <span class="fw-bold">{{selectedYear}}</span></small>
+                                        <h4 class="mb-0 p-0 mt-0">Rp. {{sumTotalYear() | currency:"":0}}</h4>
+                                    </div> -->
+                                    <div class="col-auto text-end">
+                                        <small>Remaining Balance <span class="fw-bold">({{selectedYear}})</span></small>
+                                        <h4 class="mb-0 p-0 mt-0 lonsum-text-primary">Rp. {{sumTotalYear() - sumTotalYearExpense() | currency:"":0}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <!-- <h3>February 2021</h3> -->
+                <div class="table-responsive font-14">
+                    <table class="table table-bordered table-hover align-middle table-sm">
+                        <thead class="bg-light">
+                            <tr>
+                                <th scope="col" rowspan="2">No</th>
+                                <th scope="col" rowspan="1">Type</th>
+                                <th scope="col" rowspan="2">Date</th>
+                                <th scope="col" rowspan="1">Doc.Number</th>
+                                <th scope="col" rowspan="1">Description</th>
+                                <th scope="col" rowspan="2">Quantity</th>
+                                <th scope="col" rowspan="1">Unit</th>
+                                <th scope="col" rowspan="2">Price/Unit(Rp)</th>
+                                <th scope="col" colspan="3" class="text-center">Expense Value(Rp)</th>
+                                <th scope="col" rowspan="2" class="text-center px-3"></th>
+                            </tr>
+                            <tr>
+                                <th scope="col">
+                                    <input type="search" ng-model="searchType" name="type" class="form-control form-control-sm">
+                                </th>
+                                <th scope="col">
+                                    <input type="search" ng-model="searchDocument" name="document" class="form-control form-control-sm">
+                                </th>
+                                <th scope="col">
+                                    <input type="search" ng-model="searchDescription" name="description" class="form-control form-control-sm">
+                                </th>
+                                <th scope="col">
+                                    <input type="search" ng-model="searchUnit" name="unit" class="form-control form-control-sm">
+                                </th>
+                                <th scope="col" class="text-center">Total</th>
+                                <th scope="col" class="text-center">Budgeted</th>
+                                <th scope="col" class="text-center">PTA</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="expense in expenses | filter: {expenseTypeName:searchType, documentNumber:searchDocument, description:searchDescription, unit:searchUnit} | filter:searchAll | orderBy: entryDate" ng-if="expenses.length > 0 && !isLoading" class="animated fadeIn">
+                                <th scope="row">{{$index+1}}</th>
+                                <td>{{expense.expenseTypeName}}</td>
+                                <td>{{expense.entryDate | date:"MMMM d, y"}}</td>
+                                <td>{{expense.documentNumber}}</td>
+                                <td>{{expense.description}}</td>
+                                <td class="text-end">{{expense.quantity}}</td>
+                                <td>{{expense.unit}}</td>
+                                <td class="text-end">{{expense.price | currency:"":0}}</td>
+                                <td class="text-end">{{expense.total | currency:"":0}}</td>
+                                <td class="text-end">{{expense.budgeted | currency:"":0}}</td>
+                                <td class="text-end">{{expense.pta | currency:"":0}}</td>
+                                <td class="text-center">
+                                    <!-- <button class="btn btn-success btn-sm" ng-click="editBa(expense)">Edit</button> -->
+                                    <!-- <a class="text-primary cursor-pointer fw-bold me-2" ng-click="showModalNewExpense(2, expense)">Edit</a> -->
+                                    <a class="text-danger cursor-pointer fw-bold font-16" ng-click="askToDelete(expense)"><ion-icon name="trash"></ion-icon></a>
+                                </td>
+                            </tr>
+                            <tr ng-if="expenses.length === 0 && !isLoading">
+                                <td colspan="12" class="py-5 animated fadeIn text-center">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-auto my-auto ms-auto">
+                                                <img src="../../../assets//media/illustrations/nodata.svg" width="100" alt="">
+                                            </div>
+                                            <div class="col-auto my-auto me-auto">
+                                                <h4>No Data!</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="12" class="py-5 text-center" ng-if="isLoading">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            Loading...
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot class="bg-light fw-bold" ng-if="expenses.length > 0">
+                            <tr>
+                                <td colspan="8" class="text-end">Subtotal </td>
+                                <td class="text-end">{{sumTotalMonth() | currency:"":0}}</td>
+                                <td class="text-end">{{sumTotalBudgeted() | currency:"":0}}</td>
+                                <td class="text-end">{{sumTotalPta() | currency:"":0}}</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- <hr> -->
+                <div class="row mt-3">
+                    <div class="col ms-auto">
+                        <div class="table-responsive font-14">
+                            <table class="table table-bordered table-hover align-middle table-sm">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th colspan="4" class="text-center py-3">
+                                            <h3 class="my-0">
+                                                Total Summary Expense - <span ng-repeat="m in months" ng-if="m.value == selectedMonth">{{m.month}} {{selectedYear}}</span>
+                                            </h3>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col" class="fw-bold">Expense Type</th>
+                                        <th scope="col" class="fw-bold text-end">Total Summary (Rp)</th>
+                                        <th scope="col" class="fw-bold text-end">AOP Balance (Rp)</th>
+                                        <th scope="col" class="fw-bold text-end">Remaining (Rp)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="expense in expenseTypes">
+                                        <td>{{expense.typeName}}</td>
+                                        <td class="text-end">{{sumTotalExpenseType(expense.id) | currency:"":0}}</td>
+                                        <td class="text-end">{{sumTotalAopAmount(expense.id, selectedMonth) | currency:"":0}}</td>
+                                        <td class="text-end" ng-class="{'text-danger': sumTotalAopAmount(expense.id, selectedMonth) - sumTotalExpenseType(expense.id) < 0}">
+                                            {{sumTotalAopAmount(expense.id, selectedMonth) - sumTotalExpenseType(expense.id) | currency:"":0}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="bg-light">
+                                    <tr>
+                                        <td class="fw-bold">Total</td>
+                                        <td class="text-end fw-bold">{{sumTotalMonth() | currency:"":0}}</td>
+                                        <td class="text-end fw-bold">{{sumTotalAopYear(selectedMonth) | currency:"":0}}</td>
+                                        <td class="text-end fw-bold">{{sumTotalAopYear(selectedMonth) - sumTotalMonth() | currency:"":0}}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalNewExpense" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModal">{{submissionTypeTitle}}</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mb-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <form name="expenseForm">
+                            <div class="row mb-3" ng-hide="userData.role !== 2">
+                                <div class="col position-relative ms-auto">
+                                    <div class="dropdown">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Business Area<span class="text-danger fw-bold">*</span></label>
+                                        <input type="text" readonly name="" id="baList" class="form-control bg-white form-control-sm cursor-pointer dropdown-toggle" ng-model="selectedBaName" ng-click="baListToggle()" data-bs-toggle="dropdown">
+                                        <ion-icon name="chevron-down-outline" class="position-absolute cursor-pointer" style="right: 15px; top: 37px;"></ion-icon>
+                                        <div class="dropdown-menu border-0 p-0" aria-labelledby="baList">
+                                            <div class="card position-absolute mt-2" style="z-index: 3; max-height: 300px; overflow: auto; width: 380px;">
+                                                <div class="card-header sticky-top bg-light">
+                                                <input type="search" name="" id="" class="form-control form-control-sm" placeholder="Search business area..." ng-model="searchBa" autofocus>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row" ng-repeat="ba in baData | filter: searchBa">
+                                                        <div class="col cursor-pointer py-1 font-14 balist" ng-click="selectBa(ba)">{{ba.bacode}} - {{ba.estateName}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Expense Type<span class="text-danger fw-bold">*</span></label>
+                                        <select class="form-select form-select-sm" name="expenseType" ng-class="{'is-invalid': expenseForm.expenseType.$invalid && expenseForm.expenseType.$touched}" ng-model="expenseDataForm.typeName" ng-options="t.id as t.typeName for t in expenseTypes" required="">
+                                            <option value="s" disabled>-- Choose Expense Type --</option>
+                                        </select>
+                                        <div class="invalid-feedback" ng-show="expenseForm.expenseType.$touched && expenseForm.expenseType.$error.required">
+                                            Expense type is required!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Date<span class="text-danger fw-bold">*</span></label>
+                                        <input type="date" name="expenseDate" ng-model="expenseDataForm.entryDate" class="form-control form-control-sm" ng-class="{'is-invalid': expenseForm.expenseDate.$invalid && expenseForm.expenseDate.$touched}" placeholder="dd/mm/yyyy" required>
+                                        <div class="invalid-feedback" ng-show="expenseForm.expenseDate.$touched && expenseForm.expenseDate.$error.required">
+                                                Entry Date is required!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Document Number<span class="text-danger fw-bold">*</span></label>
+                                        <input type="text" name="expenseDoc" class="form-control form-control-sm" ng-model="expenseDataForm.documentNumber" ng-class="{'is-invalid': expenseForm.expenseDoc.$invalid && expenseForm.expenseDoc.$touched}" required>
+                                        <div class="invalid-feedback" ng-show="expenseForm.expenseDoc.$touched && expenseForm.expenseDoc.$error.required">
+                                            Document number is required!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Description<span class="text-danger fw-bold">*</span></label>
+                                        <textarea type="text" name="expenseDesc" class="form-control form-control-sm" ng-model="expenseDataForm.description" ng-class="{'is-invalid': expenseForm.expenseDesc.$invalid && expenseForm.expenseDesc.$touched}" required></textarea>
+                                        <div class="invalid-feedback" ng-show="expenseForm.expenseDesc.$touched && expenseForm.expenseDesc.$error.required">
+                                            Description is required!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Quantity<span class="text-danger fw-bold">*</span></label>
+                                        <input type="number" name="expenseQuan" class="form-control form-control-sm" ng-model="expenseDataForm.quantity" ng-class="{'is-invalid': expenseForm.expenseQuan.$invalid && expenseForm.expenseQuan.$touched}" required>
+                                        <div class="invalid-feedback" ng-show="expenseForm.expenseQuan.$touched && expenseForm.expenseQuan.$error.required">
+                                            Quantity is required!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Unit<span class="text-danger fw-bold">*</span></label>
+                                        <input type="text" name="expenseUnit" class="form-control form-control-sm" ng-model="expenseDataForm.unit" ng-class="{'is-invalid': expenseForm.expenseUnit.$invalid && expenseForm.expenseUnit.$touched}" required>
+                                        <div class="invalid-feedback" ng-show="expenseForm.expenseUnit.$touched && expenseForm.expenseUnit.$error.required">
+                                            Unit is required!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Price/Unit(Rp)<span class="text-danger fw-bold">*</span></label>
+                                        <input type="number" name="expensePrice" class="form-control form-control-sm text-end" ng-model="expenseDataForm.price" ng-class="{'is-invalid': expenseForm.expensePrice.$invalid && expenseForm.expensePrice.$touched}" required>
+                                        <div class="invalid-feedback" ng-show="expenseForm.expensePrice.$touched && expenseForm.expensePrice.$error.required">
+                                            Price/unit is required!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr ng-if="expenseValue">
+                            <div class="row mb-3" ng-if="expenseValue">
+                                <h3 class="mb-1">Expense Value</h3>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Total<span class="text-danger fw-bold">*</span></label>
+                                        <input type="text" name="expenseTotal" class="form-control form-control-sm" ng-value="expenseDataForm.price * expenseDataForm.quantity" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">Budgeted<span class="text-danger fw-bold">*</span></label>
+                                        <input type="number" name="expenseBudgeted" class="form-control form-control-sm" ng-model="expenseDataForm.budgeted">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-group">
+                                        <label for="" class="mb-1 fw-bold text-secondary">PTA<span class="text-danger fw-bold">*</span></label>
+                                        <input type="number" name="expensePta" class="form-control form-control-sm" ng-model="expenseDataForm.pta">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="card bg-light">
+                                    <div class="card-body py-1">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="table-responsive">
+                                                    <table class="table w-100 align-middle">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <small ng-repeat="m in months" ng-if="m.value === selectedMonth">
+                                                                        Remaining Balance for : <br> <span class="fw-bold" ng-repeat="et in expenseTypes" ng-if="et.id === expenseDataForm.typeName">{{et.typeName}}</span> in <span class="fw-bold">{{expenseDataForm.entryDate | date:"MMMM y"}}</span>
+                                                                    </small>
+                                                                </td>
+                                                                <td class="text-end">
+                                                                    <h4 class="mb-0 p-0 mt-0 my-0 text-end">Rp. {{sumTotalAopByExpenseTypeMonth(expenseDataForm.typeName, expenseDataForm.entryDate) - sumTotalBaExpenseType(expenseDataForm.typeName, expenseDataForm.entryDate) | currency:"":0}}</h4>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><small>Total Submission (Quantity x Price)</small></td>
+                                                                <td class="text-end fw-bold">
+                                                                    <h4 class="my-0">Rp. {{expenseDataForm.price * expenseDataForm.quantity | currency:"":0}}</h4>
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="lonsum-bg-secondary">
+                                                                <td><span class="fw-bold">Total Balance after Submission</span></td>
+                                                                <td class="text-end fw-bold">
+                                                                    <h4 class="my-0">
+                                                                        Rp. {{ (sumTotalAopByExpenseTypeMonth(expenseDataForm.typeName, expenseDataForm.entryDate) - sumTotalBaExpenseType(expenseDataForm.typeName, expenseDataForm.entryDate)) - expenseDataForm.price * expenseDataForm.quantity
+                                                                        | currency:"":0}}
+                                                                    </h4>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn lonsum-btn-primary mx-auto btn-lg fw-bold" ng-disabled="expenseForm.$invalid" style="width: 300px;" ng-click="sumbitNewExpense()">{{submissionBtnTitle}}</button>
+            </div>
+        </div>
+    </div>
+</div>

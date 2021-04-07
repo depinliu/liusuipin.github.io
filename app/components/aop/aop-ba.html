@@ -1,0 +1,691 @@
+<div class="mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container-fluid px-5">
+            <a class="navbar-brand" href="/">
+                <img src="../../../assets/media/logo/logo-mylonsum-baru-revisi.png" width="130" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-3">
+                    <a class="nav-link active text-success fw-bold" aria-current="page" href="#!/aop/ba">Business Area</a>
+                    <a class="nav-link" aria-current="page" href="#!/aop/department">Department</a>
+                    <!-- <h3>{{location}} - {{departmentBa}}</h3> -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-5">
+        <div class="row mt-4 mb-3">
+            <div class="col-auto position-relative">
+                <div class="dropdown">
+                    <input type="text" readonly name="" id="baList" class="form-control bg-white form-control-sm cursor-pointer dropdown-toggle" ng-model="selectedBa" ng-click="baListToggle()" data-bs-toggle="dropdown" style="width: 380px;">
+                    <ion-icon name="chevron-down-outline" class="position-absolute cursor-pointer" style="right: 15px; top: 8px;"></ion-icon>
+                    <div class="dropdown-menu border-0 p-0" aria-labelledby="baList">
+                        <div class="card position-absolute mt-2" style="z-index: 3; max-height: 300px; overflow: auto; width: 380px;">
+                            <div class="card-header sticky-top bg-light">
+                            <input type="search" name="" id="" class="form-control form-control-sm" placeholder="Search business area..." ng-model="searchBa" autofocus>
+                            </div>
+                            <div class="card-body">
+                                <div class="row" ng-repeat="ba in baMasterData | filter: searchBa">
+                                    <div class="col cursor-pointer py-1 font-14 balist" ng-click="selectBa(ba)">{{ba.bacode}} - {{ba.estateName}}</div>
+                                    <!-- <div class="col py-3 font-14" ng-if="ba.length === 0">
+                                        "{{searchBa}}" not found!
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <select class="form-select form-select-sm cursor-pointer" ng-model="selectedYear" ng-options="y.value as y.value for y in years" ng-change="filterAop(selectedYear)">
+                    <option value="">-- Choose Year --</option>
+                </select>
+            </div>
+            <div class="col-auto ms-auto" ng-show="isAop">
+                <input type="search" ng-model="searchAll" class="form-control form-control-sm" placeholder="Search...">
+            </div>
+        </div>
+        <div class="row" ng-if="isAop">
+            <div class="col-sm-12">
+                <small><i class="text-danger mb-1">*Format nilai dalam bentuk IDR</i></small>
+                <div class="table-responsive font-14 ">
+                    <table class="table table-bordered table-hover align-middle table-sm">
+                        <thead class="bg-light">
+                            <tr>
+                                <th scope="col" rowspan="2" class="sticky-col first-col bg-light">No</th>
+                                <th scope="col" rowspan="2" class="sticky-col second-col bg-light">ExpenseType</th>
+                                <th scope="col" rowspan="1" colspan="3" class="text-center">Total</th>
+                                <th scope="col" rowspan="1" colspan="3" class="text-center" ng-repeat="m in months">{{m.month}}</th>
+                            </tr>
+                            <tr>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                                <th scope="col" rowspan="1" class="text-center" ng-repeat="t in theadData">{{t}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="ad in expenseTypes | filter: {typeName:searchAll}" class="animated fadeIn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ad.typeName}}">
+
+                                <th scope="row" class="sticky-col first-col bg-white ">{{$index+1}}</th>
+                                <td class="sticky-col second-col bg-white">{{ad.typeName}}</td>
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAop(ad.id) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">
+                                                        {{
+                                                            sumTotalExpenseType(ad.id, 1) + 
+                                                            sumTotalExpenseType(ad.id, 2) +
+                                                            sumTotalExpenseType(ad.id, 3) +
+                                                            sumTotalExpenseType(ad.id, 4) +
+                                                            sumTotalExpenseType(ad.id, 5) +
+                                                            sumTotalExpenseType(ad.id, 6) +
+                                                            sumTotalExpenseType(ad.id, 7) +
+                                                            sumTotalExpenseType(ad.id, 8) +
+                                                            sumTotalExpenseType(ad.id, 9) +
+                                                            sumTotalExpenseType(ad.id, 10) +
+                                                            sumTotalExpenseType(ad.id, 11) +
+                                                            sumTotalExpenseType(ad.id, 12) 
+                                                            | currency:"":0
+                                                        }}
+                                                    </span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAop(ad.id) - (
+                                        sumTotalExpenseType(ad.id, 1) + 
+                                        sumTotalExpenseType(ad.id, 2) +
+                                        sumTotalExpenseType(ad.id, 3) +
+                                        sumTotalExpenseType(ad.id, 4) +
+                                        sumTotalExpenseType(ad.id, 5) +
+                                        sumTotalExpenseType(ad.id, 6) +
+                                        sumTotalExpenseType(ad.id, 7) +
+                                        sumTotalExpenseType(ad.id, 8) +
+                                        sumTotalExpenseType(ad.id, 9) +
+                                        sumTotalExpenseType(ad.id, 10) +
+                                        sumTotalExpenseType(ad.id, 11) +
+                                        sumTotalExpenseType(ad.id, 12)
+                                    ) < 0}">
+                                        {{
+                                            sumTotalAop(ad.id) - (
+                                                sumTotalExpenseType(ad.id, 1) + 
+                                                sumTotalExpenseType(ad.id, 2) +
+                                                sumTotalExpenseType(ad.id, 3) +
+                                                sumTotalExpenseType(ad.id, 4) +
+                                                sumTotalExpenseType(ad.id, 5) +
+                                                sumTotalExpenseType(ad.id, 6) +
+                                                sumTotalExpenseType(ad.id, 7) +
+                                                sumTotalExpenseType(ad.id, 8) +
+                                                sumTotalExpenseType(ad.id, 9) +
+                                                sumTotalExpenseType(ad.id, 10) +
+                                                sumTotalExpenseType(ad.id, 11) +
+                                                sumTotalExpenseType(ad.id, 12)
+                                            )
+                                            | currency:"":0
+                                        }}
+                                    </span>
+                                </td>
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 1) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100"><span class="ps-2">{{sumTotalExpenseType(ad.id, 1) | currency:"":0}}</span></td>
+                                                <td class="text-end  cursor-pointer text-info"><b ng-click="getExpenseDetail(ad, 1)" ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 1) - sumTotalExpenseType(ad.id, 1) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 1) - sumTotalExpenseType(ad.id, 1) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 2) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100"><span class="ps-2">{{sumTotalExpenseType(ad.id, 2) | currency:"":0}}</span></td>
+                                                <td class="text-end  cursor-pointer text-info"><b ng-click="getExpenseDetail(ad, 2)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 2) - sumTotalExpenseType(ad.id, 2) < 0}">{{sumTotalAopAmount(ad.id, 2) - sumTotalExpenseType(ad.id, 2) | currency:"":0}}</span>
+                                </td>
+
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 3) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 3) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 3)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 3) - sumTotalExpenseType(ad.id, 3) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 3) - sumTotalExpenseType(ad.id, 3) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 4) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 4) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 4)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 4) - sumTotalExpenseType(ad.id, 4) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 4) - sumTotalExpenseType(ad.id, 4) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 5) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 5) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 5)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 5) - sumTotalExpenseType(ad.id, 5) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 5) - sumTotalExpenseType(ad.id, 5) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 6) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 6) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 6)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 6) - sumTotalExpenseType(ad.id, 6) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 6) - sumTotalExpenseType(ad.id, 6) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 7) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 7) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 7)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 7) - sumTotalExpenseType(ad.id, 7) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 7) - sumTotalExpenseType(ad.id, 7) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 8) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 8) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 8)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 8) - sumTotalExpenseType(ad.id, 8) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 8) - sumTotalExpenseType(ad.id, 8) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 9) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 9) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 9)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 9) - sumTotalExpenseType(ad.id, 9) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 9) - sumTotalExpenseType(ad.id, 9) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 10) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 10) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 10)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 10) - sumTotalExpenseType(ad.id, 10) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 10) - sumTotalExpenseType(ad.id, 10) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 11) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 11) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 11)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 11) - sumTotalExpenseType(ad.id, 11) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 11) - sumTotalExpenseType(ad.id, 11) | currency:"":0}}
+                                    </span>
+                                </td>
+
+
+                                <td class="text-end">
+                                    <span>{{sumTotalAopAmount(ad.id, 12) | currency:"":0}}</span>
+                                </td>
+                                <td class="text-end p-0">
+                                    <table class="align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-end w-100">
+                                                    <span class="ps-2">{{sumTotalExpenseType(ad.id, 12) | currency:"":0}}</span>
+                                                </td>
+                                                <td class="text-end  cursor-pointer text-info">
+                                                    <b ng-click="getExpenseDetail(ad, 12)"ng-hide="totalCost === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                                <td class="text-end">
+                                    <span ng-class="{'text-danger': sumTotalAopAmount(ad.id, 12) - sumTotalExpenseType(ad.id, 12) < 0}">
+                                        {{sumTotalAopAmount(ad.id, 12) - sumTotalExpenseType(ad.id, 12) | currency:"":0}}
+                                    </span>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    
+                        <tfoot class="bg-light fw-bold">
+                            <tr>
+                                <td colspan="2" class="text-center sticky-col first-col bg-light">Total</td>
+                                <td class="text-end ">{{sumTotalAopYear() | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseYear() | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopYear() - sumTotalExpenseYear() < 0}">{{sumTotalAopYear() - sumTotalExpenseYear() | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(1) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(1) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(1) - sumTotalExpenseMonth(1) < 0}">{{sumTotalAopMonth(1) - sumTotalExpenseMonth(1) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(2) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(2) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(2) - sumTotalExpenseMonth(2) < 0}">{{sumTotalAopMonth(2) - sumTotalExpenseMonth(2) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(3) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(3) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(3) - sumTotalExpenseMonth(3) < 0}">{{sumTotalAopMonth(3) - sumTotalExpenseMonth(3) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(4) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(4) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(4) - sumTotalExpenseMonth(4) < 0}">{{sumTotalAopMonth(4) - sumTotalExpenseMonth(4) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(5) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(5) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(5) - sumTotalExpenseMonth(5) < 0}">{{sumTotalAopMonth(5) - sumTotalExpenseMonth(5) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(6) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(6) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(6) - sumTotalExpenseMonth(6) < 0}">{{sumTotalAopMonth(6) - sumTotalExpenseMonth(6) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(7) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(7) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(7) - sumTotalExpenseMonth(7) < 0}">{{sumTotalAopMonth(7) - sumTotalExpenseMonth(7) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(8) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(8) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(8) - sumTotalExpenseMonth(8) < 0}">{{sumTotalAopMonth(8) - sumTotalExpenseMonth(8) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(9) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(9) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(9) - sumTotalExpenseMonth(9) < 0}">{{sumTotalAopMonth(9) - sumTotalExpenseMonth(9) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(10) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(10) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(10) - sumTotalExpenseMonth(10) < 0}">{{sumTotalAopMonth(10) - sumTotalExpenseMonth(10) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(11) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(11) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(11) - sumTotalExpenseMonth(11) < 0}">{{sumTotalAopMonth(11) - sumTotalExpenseMonth(11) | currency:"":0}}</td>
+
+                                <td class="text-end ">{{sumTotalAopMonth(12) | currency:"":0}}</td>
+                                <td class="text-end ">{{sumTotalExpenseMonth(12) | currency:"":0}}</td>
+                                <td class="text-end " ng-class="{'text-danger': sumTotalAopMonth(12) - sumTotalExpenseMonth(12) < 0}">{{sumTotalAopMonth(12) - sumTotalExpenseMonth(12) | currency:"":0}}</td>
+
+                            </tr>
+                        </tfoot>
+                    
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5" ng-if="!isAop">
+            <div class="col-sm-4 mx-auto text-center mt-5">
+                <img src="../../../assets/media/illustrations/baselect.svg" width="100%" class="animated jackInTheBox" alt="">
+                <h4 class="animated fadeInUp">Please select a business area.</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalExpenseDetail" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModal">Submission Detail for <span class="lonsum-text-primary">{{selectedExpenseType}}</span> in <span class="lonsum-text-primary" ng-repeat="m in months" ng-if="m.value == selectedMonth">{{m.month}} {{selectedYear}}</span> </h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive font-14">
+                            <table class="table table-bordered table-hover align-middle table-sm">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col" rowspan="2">No</th>
+                                        <th scope="col" rowspan="2">Date</th>
+                                        <th scope="col" rowspan="1">Doc.Number</th>
+                                        <th scope="col" rowspan="1">Description</th>
+                                        <th scope="col" rowspan="2">Quantity</th>
+                                        <th scope="col" rowspan="1">Unit</th>
+                                        <th scope="col" rowspan="2">Price/Unit(Rp)</th>
+                                        <th scope="col" colspan="3" class="text-center">Expense Value(Rp)</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">
+                                            <input type="search" ng-model="searchDocument" name="document" class="form-control form-control-sm">
+                                        </th>
+                                        <th scope="col">
+                                            <input type="search" ng-model="searchDescription" name="description" class="form-control form-control-sm">
+                                        </th>
+                                        <th scope="col">
+                                            <input type="search" ng-model="searchUnit" name="unit" class="form-control form-control-sm">
+                                        </th>
+                                        <th scope="col" class="text-center">Total</th>
+                                        <th scope="col" class="text-center">Budgeted</th>
+                                        <th scope="col" class="text-center">PTA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="expense in baExpenseDetail | filter: {expenseTypeName:searchType, documentNumber:searchDocument, description:searchDescription, unit:searchUnit} | filter:searchAll | orderBy: entryDate" ng-if="baExpenseDetail.length > 0 && !isLoading" class="animated fadeIn">
+                                        <th scope="row">{{$index+1}}</th>
+                                        <td>{{expense.entryDate | date:"MMMM d, y"}}</td>
+                                        <td>{{expense.documentNumber}}</td>
+                                        <td>{{expense.description}}</td>
+                                        <td class="text-end">{{expense.quantity}}</td>
+                                        <td>{{expense.unit}}</td>
+                                        <td class="text-end">{{expense.price | currency:"":0}}</td>
+                                        <td class="text-end">{{expense.total | currency:"":0}}</td>
+                                        <td class="text-end">{{expense.budgeted | currency:"":0}}</td>
+                                        <td class="text-end">{{expense.pta | currency:"":0}}</td>
+                                    </tr>
+                                    <tr ng-if="expenses.length === 0 && !isLoading">
+                                        <td colspan="12" class="py-5 animated fadeIn text-center">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-auto my-auto ms-auto">
+                                                        <img src="../../../assets//media/illustrations/nodata.svg" width="100" alt="">
+                                                    </div>
+                                                    <div class="col-auto my-auto me-auto">
+                                                        <h4>No Data!</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td colspan="12" class="py-5 text-center" ng-if="isLoading">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    Loading...
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="bg-light fw-bold" ng-if="baExpenseDetail.length > 0">
+                                    <tr>
+                                        <td colspan="7" class="text-end">Subtotal </td>
+                                        <td class="text-end">{{sumTotalMonth() | currency:"":0}}</td>
+                                        <td class="text-end">{{sumTotalBudgeted() | currency:"":0}}</td>
+                                        <td class="text-end">{{sumTotalPta() | currency:"":0}}</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- <td class="text-end">
+    <span ng-repeat="a in aopData" ng-if="a.expenseTypeId === ad.id && a.month === 1">{{a.aopamount | currency:"":0}}</span>
+</td>
+<td class="text-end p-0">
+    <table class="align-middle">
+        <tbody>
+            <tr>
+                <td class="text-end w-100"><span class="ps-2">{{sumTotalExpenseType1(ad.id) | currency:"":0}}</span></td>
+                <td class="text-end  cursor-pointer text-info"><b ng-click="getExpenseDetail(ad, 1)" ng-hide="total1 === 0"><ion-icon name="information-circle" class="font-21 mt-1"></ion-icon></b></td>
+            </tr>
+        </tbody>
+    </table>
+</td>
+<td class="text-end">
+    <span ng-repeat="a in aopData" ng-if="a.expenseTypeId === ad.id && a.month === 1">{{a.aopamount - sumTotalExpenseType1(ad.id) | currency:"":0}}</span>
+</td> -->
+
+
+
+<!-- --EXEC sp_addlinkedserver @server='10.126.20.251'
+
+--EXEC sp_addlinkedsrvlogin '10.126.20.251', 'false', NULL, 'APP.VM', 's1mp2019'
+
+--select * from sys.servers
+
+--select top (1000) * from [10.126.105.239].[INDOAGRI_DATA].[#schema#].[#table#]
+
+--SELECT [SAKTO]
+--			,[ERDAT_HDR]
+--			,[ERZET_HDR]
+--			,[DOCNUM]
+--			,[POST1]
+--			,[MENGE]
+--			,[MEINS]
+--			,[BUDGET_COST]
+--			,[TOTAL_BUDGET]
+--  FROM [10.126.105.239].[INDOAGRI_DATA].[dbo].[tblCERA]
+--GO
+
+--SELECT [KOSTL]
+--		,[LTEXT]
+--		,[SAKTO]
+--		,[TXT50]
+--		,[BADAT]
+--		,[BANFN]
+--		,[TXZ01]
+--		,[MENGE]
+--		,[MEINS]
+--		,[PREIS]
+--		,[AMTPR]
+--  FROM [10.126.105.239].[INDOAGRI_DATA].[dbo].[ZTM_PR_LIST]
+--GO
+
+--SELECT [prd_KOSTL_CostCenter]
+--,[prd_SAKNR_GLAcc]
+--,[CreatedOn]
+--,[Code]
+--,[prd_ProductName]
+--,[prd_Qty]
+--,[prd_UOM]
+--,[prd_SalePrice]
+--  FROM [10.126.20.251].[DB_ICAT].[dbo].[View_Request]
+--GO
+
+CREATE VIEW AOP_EXPENSE_ZTM_PR_LIST
+AS
+SELECT [KOSTL] as Cost_Center
+		,[SAKTO] as ExpenseType
+		,[BADAT] as EntryDate
+		,[BANFN] as DocumentNumber
+		,[TXZ01] as Description
+		,[MENGE] as Quantity
+		,[MEINS] as Unit
+		,[PREIS] as Price
+		,[AMTPR] as Total
+  FROM [10.126.105.239].[INDOAGRI_DATA].[dbo].[ZTM_PR_LIST]
+GO
+
+ -->
