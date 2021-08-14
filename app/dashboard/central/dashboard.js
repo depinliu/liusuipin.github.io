@@ -11,5 +11,5 @@ function($scope, $rootScope, $location, $window) {
     $scope.setTitle("Dashboard","cog");
     $scope.title = "Dashboard"
     $rootScope.activePath = $location.path();
-
+    console.log($rootScope.activePath);
 }]);

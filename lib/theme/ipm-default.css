@@ -137,7 +137,7 @@
 .sidebar-items{
     transition: 0.3s;
 }
-.sidebar-items:hover{
+.sidebar-items-active, .sidebar-items:hover{
     background-color: var(--ipm-primary);
     color: white;
     border-radius: .25rem !important;

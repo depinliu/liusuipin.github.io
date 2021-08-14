@@ -172,7 +172,7 @@
                                         </div>
                                     </a>
         
-                                    <a class="row sidebar-items py-2 mx-1 cursor-pointer mb-2 ipm-text-default" href="#!{{m.r}}" ng-if="m.c.length === 0">
+                                    <a class="row sidebar-items py-2 mx-1 cursor-pointer mb-2 ipm-text-default" ng-class="{'sidebar-items-active': $root.activePath === m.r}" href="#!{{m.r}}" ng-if="m.c.length === 0">
                                         <div class="col-auto my-auto">
                                             <i class="bi {{m.i}}"></i>
                                         </div>
