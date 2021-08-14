@@ -1,0 +1,15 @@
+{
+  "_i": "lock",
+  "_t": "Masuk",
+  "b1": "Captcha baru",
+  "b2": "Sebelumnya",
+  "b3": "Berikutnya",
+  "b4": "Masuk",
+  "l": ["Identitas Pengguna:", "Kata Kunci:", "Captcha:"],
+  "ph": ["Silahkan masukkan Identitas Pengguna", "Silahkan masukkan Kata Kunci", "Silahkan masukkan captcha"],
+  "m": "Sedang menghubungi server, silahkan tunggu...",
+  "e": "Login gagal. Anda bisa coba lagi dengan memasukkan kredensial yang benar.",
+  "ec": "Jawaban captcha salah, silahkan coba lagi.",
+  "ea": "Untuk sementara akun Anda tidak dapat dipergunakan. Silahkan menghubungi administrator.",
+  "eu": "Login gagal. Silahkan menghubungi administrator untuk mendapatkan solusi."
+}

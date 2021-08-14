@@ -1,0 +1,22 @@
+.thm-l5 {color:#000 !important; background-color:#f0f0f0 !important}
+.thm-l4 {color:#000 !important; background-color:#cccccc !important}
+.thm-l3 {color:#fff !important; background-color:#999999 !important}
+.thm-l2 {color:#fff !important; background-color:#666666 !important}
+.thm-l1 {color:#fff !important; background-color:#333333 !important}
+.thm-d1 {color:#fff !important; background-color:#000000 !important}
+.thm-d2 {color:#fff !important; background-color:#000000 !important}
+.thm-d3 {color:#fff !important; background-color:#000000 !important}
+.thm-d4 {color:#fff !important; background-color:#000000 !important}
+.thm-d5 {color:#fff !important; background-color:#000000 !important}
+
+.thm-light {color:#000 !important; background-color:#f0f0f0 !important}
+.thm-dark {color:#fff !important; background-color:#000000 !important}
+.thm-action {color:#fff !important; background-color:#000000 !important}
+
+.thm {color:#fff !important; background-color:#000000 !important}
+.thm-txt {color:#000000 !important}
+.thm-border {border-color:#000000 !important}
+
+.thm-hover:hover {color:#fff !important; background-color:#000000 !important}
+.thm-txt-hover:hover {color:#000000 !important}
+.thm-border-hover:hover {border-color:#000000 !important}

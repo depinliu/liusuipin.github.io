@@ -1,0 +1,290 @@
+<div class="my-alert">
+    <div ng-repeat="a in _a" class="alert animated bounceInRight alert-dismissible fade show shadow alert-{{a.c}}" ng-hide="a.length == 0" role="alert">
+        <alr d="a"/>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+<!-- <div ng-repeat="a in _a" class="alit {{a.c}}">
+    <span ng-hide="a.b" class="w3-button w3-display-topright" ng-click="_x(a.i)">x</span>
+    <b ng-show="a.t">{{a.t}}</b>
+    <p class="altx">{{a.m}}</p>
+    <alr d="a"/>
+</div> -->
+
+<!-- <div ng-init="isSideSettings = false">
+    <div ng-class="{'side-settings-close': !isSideSettings}" class="row position-fixed bg-white shadow-lg side-settings trantition">
+        <div class="col-auto">
+            <div class="row">
+                <div class="col">
+                    <h3>Settings</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="isSideSettings" ng-click="isSideSettings = !isSideSettings" class="bg-dark position-fixed" style="min-height: 100vh; width: 100%; z-index: 999998; opacity: 0;"></div>
+</div> -->
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="settingMySite" style="width: 350px !important;">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-bold">Custom Settings</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            Custom settings like themes, language, or anything.
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid" ng-init="isSidebar = true">
+    <div class="row fixed-top ipm-bg-primary" style="min-height: 50px;">
+        <!-- <div class="col-auto" style="width: 250px;"> -->
+        <div class="col-sm-2">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand fw-bold" href="#">PMI - Darahku</a>
+                </div>
+            </nav>
+        </div>
+        <div class="col-sm-10">
+            <nav class="navbar navbar-expand-lg navbar-dark py-0 h-100">
+                <div class="container-fluid h-100">
+                    <div class="navbar-brand fw-bold font-21 icon-hover h-100 d-flex align-items-center px-2 cursor-pointer" ng-click="isSidebar = !isSidebar"><ion-icon name="menu"></ion-icon></div>
+                    <div class="collapse navbar-collapse h-100" id="navbarSupportedContent">
+                        <ul class="navbar-nav mb-2 mb-lg-0 ms-auto h-100 d-flex align-items-center">
+                            <li class="nav-item px-1 icon-hover h-100 d-flex align-items-center dropdown">
+                                <a class="nav-link dropdown-toggle caret-off font-21 text-white" href="" id="notifList" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-bell-fill"></i>
+                                    <div class="notify">
+                                        <span class="heartbit"></span>
+                                        <span class="point"></span>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="notifList">
+                                    <div class="card border-0">
+                                        <div class="card-body">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-click="_goTo('/')" class="nav-item px-1 cursor-pointer icon-hover h-100 d-flex align-items-center">
+                                <div class="nav-link font-21 text-white">
+                                    <i class="bi bi-box-arrow-in-right"></i>
+                                </div>
+                            </li>
+                            <!-- <li class="nav-item px-1 icon-hover h-100 d-flex align-items-center dropdown">
+                                <a class="nav-link dropdown-toggle caret-off font-21 text-white" href="" id="messList" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <ion-icon name="mail" ></ion-icon>
+                                    <div class="notify">
+                                        <span class="heartbit"></span>
+                                        <span class="point"></span>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="messList">
+                                    <div class="card border-0">
+                                        <div class="card-body">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li> -->
+                            <!-- <li class="nav-item px-1 icon-hover h-100 d-flex align-items-center dropdown">
+                                <a class="nav-link dropdown-toggle caret-off" href="" id="langList" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="../../m/flag/indonesia.png" width="25" alt="">
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="langList">
+                                    <li><a class="dropdown-item" href="#"><img src="../../m/flag/united-states.png" alt="" class="me-2" width="25"> English</a></li>
+                                    <li><a class="dropdown-item" href="#"><img src="../../m/flag/indonesia.png" alt="" class="me-2" width="25"> Indonesia</a></li>
+                                </ul>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row contents" style="margin-top: 50px;">
+        <div class="col-sm-2 position-fixed bg-white left-sidebar trantition" ng-class="{'left-sidebar-close': !isSidebar}">
+    
+            <div class="row align-items-center" style="background-image: url('../../m/img/blood-bg.svg'); background-size: cover; background-position: center;">
+                <div class="col position-relative py-5">
+                    <div class="row px-3 mb-3">
+                        <div class="col-auto">
+                            <div class="profile-picture rounded-circle" style="width: 60px; height: 60px; border: 3px solid white; background-image: url('../../m/logo/pmi2.png'); background-size: cover; background-position: center;"></div>
+                            <!-- <img src="../../m/img/avatar.svg" width="50" class="rounded-circle" alt="" style=""> -->
+                        </div>
+                    </div>
+                    <div class="row px-3 position-absolute text-white dropdown" style="bottom: 0; width: 100%; height: 30px; background-color: #212529a3 !important;">
+                        <div class="col-auto my-auto cursor-pointer fw-bold dropdown-toggle caret-off h-100 d-flex align-items-center" data-bs-toggle="dropdown" id="profileDropDown">
+                            PMI Pusat
+                        </div>
+                        <div class="col-auto ms-auto text-white my-auto cursor-pointer caret-off dropdown-toggle h-100 d-flex align-items-center" data-bs-toggle="dropdown" id="profileDropDown">
+                            <ion-icon name="caret-down"></ion-icon>
+                        </div>
+                        <div class="dropdown-menu shadow animated flipInY" aria-labelledby="profileDropDown" style="margin-top: 30px 0px 0px 0px !important;">
+                            <a class="dropdown-item" href="#">Akun</a>
+                            <a class="dropdown-item" href="#">Bantuan</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#!/">Keluar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row py-4 " style="margin-bottom: 90px;">
+                <div class="col-sm-12">
+                    <div class="row mb-3" ng-repeat="row in _m">
+                        <div class="col-sm-12">
+                            <div class="row mx-1">
+                                <div class="col-sm-12">
+                                    <h6 class="fw-bold text-dark">{{row.a}}</h6>
+                                </div>
+                            </div>
+                            <div class="row" ng-repeat="m in row.m">
+                                <div class="col-sm-12">
+        
+                                    <a class="row sidebar-items py-2 mx-1 cursor-pointer mb-2 ipm-text-default" data-bs-toggle="collapse" href="#{{m.i}}" role="button" aria-expanded="false" aria-controls="{{m.i}}" ng-if="m.c.length > 0">
+                                        <div class="col-auto my-auto">
+                                            <i class="bi {{m.i}}"></i>
+                                        </div>
+                                        <div class="col-auto my-auto ps-0">
+                                            <p class="mb-0 ps-0">{{m.d}}</p>
+                                        </div>
+                                        <div class="col-auto ms-auto my-auto">
+                                            <div class="row">
+                                                <!-- <div class="col-auto my-auto pe-0" ng-if="m.d === 'Event'">
+                                                    <span class="badge rounded-pill bg-warning text-dark">
+                                                        2
+                                                    </span>
+                                                </div> -->
+                                                <div class="col-auto my-auto" ng-if="m.t === 1">
+                                                    <i class="bi bi-chevron-down font-12"></i>
+                                                    <!-- <ion-icon name="chevron-down" ng-if="sideChildMenuIndex !== $index && m.c.length > 0"></ion-icon>
+                                                    <ion-icon name="chevron-up" ng-if="sideChildMenu && sideChildMenuIndex === $index && m.c.length > 0"></ion-icon> -->
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </a>
+        
+                                    <a class="row sidebar-items py-2 mx-1 cursor-pointer mb-2 ipm-text-default" href="#!{{m.r}}" ng-if="m.c.length === 0">
+                                        <div class="col-auto my-auto">
+                                            <i class="bi {{m.i}}"></i>
+                                        </div>
+                                        <div class="col-auto my-auto ps-0">
+                                            <p class="mb-0 ps-0">{{m.d}}</p>
+                                        </div>
+                                    </a>
+        
+                                    <div class="collapse" id="{{m.i}}">
+                                        <div class="card card-body py-1">
+                                            <div class="row font-14">
+                                                <div class="col-sm-12" ng-repeat="cm in m.c" >
+                                                    <div ng-click="_goRoute(cm)" class="row py-1 cursor-pointer ipm-text-default">
+                                                        <div class="col sidebar-items-child" ng-class="{'sidebar-items-child-active': $root.activePath === cm.r}">
+                                                            {{cm.d}}
+                                                        </div>
+                                                        <!-- <div class="col-auto ms-auto my-auto" ng-if="cm.d === 'Permintaan'">
+                                                            <span class="badge rounded-pill bg-warning text-dark">
+                                                                2
+                                                            </span>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="row mx-1">
+                        <div class="col-sm-12">
+                            <h6 class="fw-bold text-dark">PMI Pusat</h6>
+                        </div>
+                    </div>
+                    <div class="row" ng-repeat="m in _m">
+                        <div class="col-sm-12">
+
+                            <a class="row sidebar-items py-2 mx-1 cursor-pointer mb-2 ipm-text-default" data-bs-toggle="collapse" href="#{{m.i}}" role="button" aria-expanded="false" aria-controls="{{m.i}}" ng-if="m.c.length > 0">
+                                <div class="col-auto my-auto">
+                                    <ion-icon class="font-16" name="{{m.i}}"></ion-icon>
+                                </div>
+                                <div class="col-auto my-auto ps-0">
+                                    <p class="mb-0 ps-0">{{m.d}}</p>
+                                </div>
+                                <div class="col-auto ms-auto my-auto" ng-if="m.t === 1">
+                                    <ion-icon name="chevron-down" ng-if="sideChildMenuIndex !== $index && m.c.length > 0"></ion-icon>
+                                    <ion-icon name="chevron-up" ng-if="sideChildMenu && sideChildMenuIndex === $index && m.c.length > 0"></ion-icon>
+                                </div>
+                            </a>
+
+                            <a class="row sidebar-items py-2 mx-1 cursor-pointer mb-2 ipm-text-default" href="#!{{m.r}}" ng-if="m.c.length === 0">
+                                <div class="col-auto my-auto">
+                                    <ion-icon class="font-16" name="{{m.i}}"></ion-icon>
+                                </div>
+                                <div class="col-auto my-auto ps-0">
+                                    <p class="mb-0 ps-0">{{m.d}}</p>
+                                </div>
+                                <div class="col-auto ms-auto my-auto" ng-if="m.t === 1">
+                                    <ion-icon name="chevron-down" ng-if="sideChildMenuIndex !== $index && m.c.length > 0"></ion-icon>
+                                    <ion-icon name="chevron-up" ng-if="sideChildMenu && sideChildMenuIndex === $index && m.c.length > 0"></ion-icon>
+                                </div>
+                            </a>
+
+                            <div class="collapse" id="{{m.i}}">
+                            <div class="card card-body">
+                                <div class="row font-14">
+                                    <div class="col-sm-12" ng-repeat="cm in m.c" >
+                                        <div ng-click="_goRoute(cm)" class="row py-1 cursor-pointer ipm-text-default">
+                                            <div class="col sidebar-items-child" ng-class="{'sidebar-items-child-active': $root.activePath === cm.r}">
+                                                {{cm.d}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+    
+        </div>
+
+        <div class="col-sm-10 side-contents trantition" ng-class="{'side-contents-full col-sm-12': !isSidebar}">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div ng-view="" ng-cloak></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="fixed-bottom text-center ipm-bg-light border-top trantition" style="width: 250px; margin-left: 0;" ng-class="{'left-sidebar-close': !isSidebar}">
+        <div class="col-auto">
+            <div class="row px-3">
+                <div class="col-sm-4 p-3 text-center font-21 icon-hover cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#settingMySite">
+                    <ion-icon name="settings-outline" class="mx-auto" data-bs-toggle="offcanvas" data-bs-target="#settingMySite"></ion-icon>
+                </div>
+                <a href="mailto: abc@example.com" target="__blank" class="col-sm-4 p-3 text-center text-secondary font-21 icon-hover cursor-pointer">
+                    <ion-icon name="mail-outline" class="mx-auto"></ion-icon>
+                </a>
+                <div class="col-sm-4 p-3 text-center font-21 icon-hover cursor-pointer">
+                    <ion-icon name="power" class="mx-auto"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+</div>
+
+
+

@@ -1,0 +1,45 @@
+<div class="col-sm-12 mx-auto animated fadeIn">
+    <form name="myForm">
+        <div class="mb-4">
+            <label for="email" class="form-label fw-bold text-dark">Email</label>
+            <input class="form-control"
+                    type="text"
+                    name="email"
+                    id="email"
+                    ng-class="{'is-invalid': myForm.email.$invalid && myForm.email.$touched}"
+                    ng-model="form.mailCode"
+                    required>
+            <div class="invalid-feedback" ng-if="myForm.email.$touched && myForm.email.$error.required && myForm.email.$invalid">
+                Email harus diisi.
+            </div>
+        </div>
+        <div class="mb-4">
+            <div class="row">
+                <div class="col-auto my-auto">
+                    <label for="password" class="form-label fw-bold text-dark">Kata Sandi</label>
+                </div>
+                <div class="col-auto ms-auto my-auto">
+                    <a href="" class="fw-bold ipm-text-primary">Lupa kata sandi?</a>
+                </div>
+            </div>
+            <input class="form-control"
+                    type="password"
+                    name="password"
+                    id="password"
+                    ng-class="{'is-invalid': myForm.password.$invalid && myForm.password.$touched}"
+                    ng-model="form.mailCode"
+                    required>
+            <div class="invalid-feedback" ng-if="myForm.password.$touched && myForm.password.$error.required && myForm.password.$invalid">
+                Password harus diisi.
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="#!/central/dashboard" class="btn ipm-btn-primary fw-bold px-4 py-2 w-100">MASUK</a>
+        </div>
+    </form>
+    <div class="row mt-4">
+        <div class="col-sm-12 fw-bold text-center">
+            Belum punya akun? Daftar di <a href="#!/sign-up" class="ipm-text-primary text-decoration-underline">sini</a>
+        </div>
+    </div>
+</div>

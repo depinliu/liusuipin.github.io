@@ -1,0 +1,20 @@
+### get info
+GET http://localhost:8090/info HTTP/1.1
+
+### get info
+GET https://hris.local/res/info HTTP/1.1
+
+### post browsing statistic
+POST https://hris.local/res/h8ipt30yag9srdrlv1y6.lwx HTTP/1.1
+Content-Type: application/json
+
+{"a": "some/url/"}
+
+### post browsing statistic
+POST http://localhost:8090/h8ipt30yag9srdrlv1y6.lwx HTTP/1.1
+Content-Type: application/json
+
+{"a": "some/url/"}
+
+### get project list
+GET https://hris.local/res/project/l/10 HTTP/1.1

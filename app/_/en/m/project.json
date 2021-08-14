@@ -1,0 +1,11 @@
+{
+    "_i":"university",
+    "_t":"Project",
+    "code":"Code",
+    "name":"Name",
+    "desc":"Description",
+    "editP":"Edit project information",
+    "workP":"Work on the project",
+    "addP":"Add New Project",
+    "moreP":"Load more project"
+}

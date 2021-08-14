@@ -1,0 +1,17 @@
+/*
+mod : User controller
+cre : lwx 20180428
+upd : lwx 20180521
+ver : 0.2
+*/
+
+appController('cProvince', [
+    '$scope', '$rootScope', '$location', '$window',
+function($scope, $rootScope, $location, $window) {
+    $scope.setTitle("Province","cog");
+    $scope.title = "Province"
+    $rootScope.activePath = $location.path();
+
+    
+
+}]);

@@ -1,0 +1,15 @@
+{
+  "_i": "lock",
+  "_t": "Login",
+  "b1": "Re-Captcha",
+  "b2": "Previous",
+  "b3": "Next",
+  "b4": "Login",
+  "l": ["User Id:", "Password:", "Captcha:"],
+  "ph": ["Please input User Id", "Please input User password", "Please input captcha"],
+  "m": "Loging in, please wait...",
+  "e": "Login failed. You can try again by providing accurate credential.",
+  "ec": "The captcha answer is incorrect, please try again.",
+  "ea": "Your account temporarry cannot be used. Please contact administrator.",
+  "eu": "Login failed. Please contact administrator to resolve the issue."
+}

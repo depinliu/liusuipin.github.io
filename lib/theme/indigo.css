@@ -1,0 +1,45 @@
+.thm-l5 {color:#000; background-color:#f3f4fb}
+.thm-l4 {color:#000; background-color:#d8dcf1}
+.thm-l3 {color:#000; background-color:#b1b8e3}
+.thm-l2 {color:#fff; background-color:#8995d6}
+.thm-l1 {color:#fff; background-color:#6271c8}
+.thm-d1 {color:#fff; background-color:#3949a3}
+.thm-d2 {color:#fff; background-color:#334191}
+.thm-d3 {color:#fff; background-color:#2d397f}
+.thm-d4 {color:#fff; background-color:#26316d}
+.thm-d5 {color:#fff; background-color:#20295b}
+
+.thm-light {color:#000; background-color:#f3f4fb}
+.thm-dark {color:#fff; background-color:#20295b}
+.thm-action {color:#fff; background-color:#20295b}
+
+.thm {color:#fff; background-color:#3f51b5}
+.thm-txt {color:#3f51b5}
+.thm-border {border-color:#3f51b5}
+
+.thm-hover:hover {color:#fff; background-color:#3f51b5}
+.thm-txt-hover:hover {color:#3f51b5}
+.thm-border-hover:hover {border-color:#3f51b5}
+
+.thm-gradient {color: #000; background:-webkit-linear-gradient(top,#b1b8e3 25%,#6271c8 75%)}
+.thm-gradient {color: #000; background:-moz-linear-gradient(top,#b1b8e3 25%,#6271c8 75%)}
+.thm-gradient {color: #000; background:-o-linear-gradient(top,#b1b8e3 25%,#6271c8 75%)}
+.thm-gradient {color: #000; background:-ms-linear-gradient(top,#b1b8e3 25%,#6271c8 75%)}
+.thm-gradient {color: #000; background:linear-gradient(top,#b1b8e3 25%,#6271c8 75%)}
+
+.thm-bg {color:#0e1853; background-color:#a5acdd}
+.thm-title {color: #20295b; background:-webkit-linear-gradient(top,#20295b 25%,#b1b8e3 75%)}
+.thm-title {color: #20295b; background:-moz-linear-gradient(top,#20295b 25%,#b1b8e3 75%)}
+.thm-title {color: #20295b; background:-o-linear-gradient(top,#20295b 25%,#b1b8e3 75%)}
+.thm-title {color: #20295b; background:-ms-linear-gradient(top,#20295b 25%,#b1b8e3 75%)}
+.thm-title {color: #20295b; background:linear-gradient(top,#20295b 25%,#b1b8e3 75%)}
+.thm-menu, .thm-menu-grp {
+    width: 100%;
+    display: inline-block;
+    color:#20295b;
+    padding: 4px 0px 4px 16px;
+    cursor: pointer;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+}
+.thm-menu:hover {color:#f3f4fb; background-color:#20295b}

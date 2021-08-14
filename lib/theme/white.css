@@ -1,0 +1,45 @@
+.thm-l5 {color:#000 !important; background-color:#ffffff !important}
+.thm-l4 {color:#000 !important; background-color:#ffffff !important}
+.thm-l3 {color:#000 !important; background-color:#ffffff !important}
+.thm-l2 {color:#000 !important; background-color:#ffffff !important}
+.thm-l1 {color:#000 !important; background-color:#ffffff !important}
+.thm-d1 {color:#000 !important; background-color:#e6e6e6 !important}
+.thm-d2 {color:#000 !important; background-color:#cccccc !important}
+.thm-d3 {color:#000 !important; background-color:#b3b3b3 !important}
+.thm-d4 {color:#fff !important; background-color:#999999 !important}
+.thm-d5 {color:#fff !important; background-color:#808080 !important}
+
+.thm-light {color:#000 !important; background-color:#ffffff !important}
+.thm-dark {color:#fff !important; background-color:#808080 !important}
+.thm-action {color:#fff !important; background-color:#808080 !important}
+
+.thm {color:#000 !important; background-color:#ffffff !important}
+.thm-txt {color:#ffffff !important}
+.thm-border {border-color:#ffffff !important}
+
+.thm-hover:hover {color:#000 !important; background-color:#ffffff !important}
+.thm-txt-hover:hover {color:#ffffff !important}
+.thm-border-hover:hover {border-color:#ffffff !important}
+
+.thm-gradient {color: #000 !important; background:-webkit-linear-gradient(top,#ffffff 25%,#e6e6e6 75%)}
+.thm-gradient {color: #000 !important; background:-moz-linear-gradient(top,#ffffff 25%,#e6e6e6 75%)}
+.thm-gradient {color: #000 !important; background:-o-linear-gradient(top,#ffffff 25%,#e6e6e6 75%)}
+.thm-gradient {color: #000 !important; background:-ms-linear-gradient(top,#ffffff 25%,#e6e6e6 75%)}
+.thm-gradient {color: #000 !important; background:linear-gradient(top,#ffffff 25%,#e6e6e6 75%)}
+
+.thm-bg {color:#000; background-color:#ffffff}
+.thm-title {color: #808080 !important; background:-webkit-linear-gradient(top,#b3b3b3 25%,#ffffff 75%)}
+.thm-title {color: #808080 !important; background:-moz-linear-gradient(top,#b3b3b3 25%,#ffffff 75%)}
+.thm-title {color: #808080 !important; background:-o-linear-gradient(top,#b3b3b3 25%,#ffffff 75%)}
+.thm-title {color: #808080 !important; background:-ms-linear-gradient(top,#b3b3b3 25%,#ffffff 75%)}
+.thm-title {color: #808080 !important; background:linear-gradient(top,#b3b3b3 25%,#ffffff 75%)}
+.thm-menu, .thm-menu-grp {
+    width: 100%;
+    display: inline-block;
+    color:#808080;
+    padding: 4px 0px 4px 16px;
+    cursor: pointer;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+}
+.thm-menu:hover {color:#ffffff !important; background-color:#808080 !important}

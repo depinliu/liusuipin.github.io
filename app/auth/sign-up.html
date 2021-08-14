@@ -1,0 +1,39 @@
+<div class="col-sm-12 mx-auto animated fadeIn">
+    <form name="myForm">
+        <div class="mb-3">
+            <label for="Institusi" class="form-label fw-bold text-dark">Institusi<span class="text-danger">*</span></label>
+            <input class="form-control"
+                    type="text"
+                    name="Institusi"
+                    id="Institusi"
+                    ng-class="{'is-invalid': myForm.Institusi.$invalid && myForm.Institusi.$touched}"
+                    ng-model="form.mailCode"
+                    required>
+            <small>(Perusahaan, organisasi, komunitas, atau lainnya)</small>
+            <div class="invalid-feedback" ng-if="myForm.Institusi.$touched && myForm.Institusi.$error.required && myForm.Institusi.$invalid">
+                Institusi harus diisi.
+            </div>
+        </div>
+        <div class="mb-4">
+            <label for="email" class="form-label fw-bold text-dark">Email<span class="text-danger">*</span></label>
+            <input class="form-control"
+                    type="text"
+                    name="email"
+                    id="email"
+                    ng-class="{'is-invalid': myForm.email.$invalid && myForm.email.$touched}"
+                    ng-model="form.mailCode"
+                    required>
+            <div class="invalid-feedback" ng-if="myForm.email.$touched && myForm.email.$error.required && myForm.email.$invalid">
+                Email harus diisi.
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="#!/dashboard" class="btn ipm-btn-primary fw-bold px-4 py-2 w-100">DAFTAR</a>
+        </div>
+    </form>
+    <div class="row mt-4">
+        <div class="col-sm-12 fw-bold text-center">
+            Sudah punya akun? Masuk di <a href="#!/sign-in" class="ipm-text-primary text-decoration-underline">sini</a>
+        </div>
+    </div>
+</div>

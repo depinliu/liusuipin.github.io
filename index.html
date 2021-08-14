@@ -1,38 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{lId}}" ng-app="pmi" ng-controller="cIndex">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Annual Operation Planning</title>
-    <link rel="icon" href="./assets/media/logo/logo-mylonsum-baru-revisi.png" type="image/png">
+    <meta name="Description" content="lisoft pmi">
+    <meta name="keywords" content="APPLICATION,WEB,HTML,CSS,JavaScript">
+    <meta name="author" content="lisoft">
+    <!-- <meta name="color-scheme" content="dark light">
+    <meta name="origin" content="https://pmi.local/"> -->
+    <meta name="fragment" content="!">
+    <base href="/">
+    <title ng-bind-template="PMI{{_t?':'+_t:''}}">PMI</title>
+    <link rel="stylesheet" ng-href="lib/theme/{{_Tm}}.min.css">
 
-    <link rel="stylesheet" href="./assets/css/aop.css">
-    <link rel="stylesheet" href="./assets/vendor/bootstrap/css/bootstrap-devin.css">
-    <link rel="stylesheet" href="./assets/vendor/animate/animate.min.css">
-    <link rel="stylesheet" href="./assets/vendor/sweetalert/sweetalert2.min.css">
-
-    <script src="./assets/vendor/bootstrap/js/devin-bootstrap.min.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script> -->
-
-    <script src="./assets/vendor/angularjs/angular-1.8.2/angular.min.js"></script>
-    <script src="./assets/vendor/angularjs/angular-1.8.2/angular-route.min.js"></script>
-    <script src="./assets/vendor/angularjs/angular-1.8.2/angular-sanitize.min.js"></script>
-    <script src="./assets/vendor/ocLazyLoad/ocLazyLoad.min.js"></script>
-    <script src="./assets/vendor/sweetalert/sweetalert2.all.min.js"></script>
-
-    <script src="./app/app.module.js"></script>
-    <script src="./app/app.config.js"></script>
-    <script src="./app/app.routes.js"></script>
-
-    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <!-- ionic icons cdn -->
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
 
 </head>
-<body>
-    
-    <div id="aopApp" ng-controller="cAopApp">
-        <ng-view></ng-view>
-    </div>
 
+<body class="thm-bg" ng-cloak>
+    <ng-include src="'/app/main/main' + ($route.current.p?$route.current.p:'') + '.min.html'"></ng-include>
+    <script id="x" src="main.min.js"></script>
 </body>
+
 </html>

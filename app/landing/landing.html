@@ -1,0 +1,126 @@
+<div class="bg-white" style="min-height: 90vh;">
+    <div class="container-fluid px-5">
+        <div class="row d-flex align-items-center" style="background-image: url('../../m/bg/landing-bg.svg'); background-position: center center; background-size: cover;">
+            <div class="col-sm-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 my-auto">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h2 class="fw-bold text-white animated fadeInDown">PMI - Darahku</h2>
+                                    <h6 class="text-white animated fadeInUp pt-2 pb-3">
+                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor eligendi amet repellat dicta maiores.
+                                    </h6>
+                                    <div class="row mt-4">
+                                        <div class="col-sm-12">
+                                            <a href="https://play.google.com/store?utm_source=apac_med&utm_medium=hasem&utm_content=Jul0121&utm_campaign=Evergreen&pcampaignid=MKT-EDR-apac-id-1003227-med-hasem-py-Evergreen-Jul0121-Text_Search_BKWS-BKWS%7cONSEM_kwid_43700053750783327_creativeid_435321981339_device_c&gclid=EAIaIQobChMI0ZiO9_Ov8gIVpplmAh3JfAxeEAAYASAAEgJTbvD_BwE&gclsrc=aw.ds" target="_blank" class="btn animated fadeInUp delay-1 px-3 btn-light fw-bold py-2">UNDUH APLIKASI</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-sm-6 mx-auto d-none d-sm-block text-end d-flex align-items-stretch position-relative" style="min-height: 80vh;">
+                            <img src="../../m/illustration//mobile.svg" class="animated fadeInUp position-absolute" width="95%" alt="" style="bottom: 0; right: 0;">
+                            <!-- <img src="../../m/illustration/home/bg.svg" class="animated fadeInUp position-absolute" width="60%" alt="" style="bottom: 0; right: 0;">
+                            <img src="../../m/illustration/home/a1.svg" width="22%" alt="" class="position-absolute" style="z-index: 1; left: 130px; top: 150px;">
+                            <img src="../../m/illustration/home/a2.svg" width="22%" alt="" class="position-absolute" style="z-index: 1; left: 130px; top: 300px;">
+                            <img src="../../m/illustration/home/a3.svg" width="22%" alt="" class="position-absolute" style="z-index: 1; left: 130px; bottom: 0;">
+                            <img src="../../m/illustration/home/a4.svg" width="22%" alt="" class="position-absolute" style="z-index: 1; right: -40px; top: 200px;">
+                            <img src="../../m/illustration/home/a5.svg" width="22%" alt="" class="position-absolute" style="z-index: 1; right: -45px; bottom: 60px;"> -->
+                        </div>
+    
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="d-flex align-items-center" style="min-height: 100vh; background-image: url('./m/bg/hero-bg.png'); background-size: cover; background-position: center center;">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-sm-6 my-auto">
+                <div class="row mb-3">
+                    <div class="col-auto">
+                        <img src="./m/logo/pmi.png" class="animated fadeInDown" width="150px" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 class="fw-bold text-dark animated fadeInDown">PMI - Aplikasi Donor Darah</h2>
+                        <h5 class="text-secondary animated fadeInUp">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor eligendi amet repellat dicta maiores.
+                        </h5>
+                        <div class="row mt-4">
+                            <div class="col-sm-12">
+                                <button ng-click="_goTo('sign-in')" class="btn animated fadeInUp delay-1 px-3 ipm-btn-primary fw-bold">UNDUH APLIKASI</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 mx-auto d-none d-sm-block my-auto text-end">
+                <img src="../../m/illustration/landing.svg" class="animated bounceIn" width="90%" alt="">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- Modal Ensure -->
+<div class="modal fade" id="nikModal" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <form name="validasi">
+                <div class="modal-header">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-auto">
+                                <h5 class="modal-title" id="exampleModal">Validasi NIK Pekerja</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-floating">
+                                    <input type="tel" ng-pattern="/^[0-9]*$/" ng-model="form.nik" class="form-control" id="nikValidation" name="nik" placeholder="Masukkan NIK karyawan..." ng-class="{'is-invalid': validasi.nik.$invalid && validasi.nik.$touched}" required>
+                                    <label for="nikValidation">NIK Karyawan</label>
+                                    <div class="invalid-feedback" ng-show="validasi.nik.$touched && validasi.nik.$error.required && validasi.nik.$invalid">
+                                        NIK karyawan harus diisi.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="row w-100">
+                        <div class="col-sm-6 mt-3 text-center">
+                            <div class="">
+                                <button ng-disabled="validasi.$invalid || btnTitle==='Memvalidasi...'" class="btn fw-bold ipm-btn-primary col-sm-8 px-4 w-100 rounded-0" ng-click="validasiNik()">
+                                    <div ng-show="btnTitle==='Memvalidasi...'" class="spinner-border spinner-border-sm" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <span ng-hide="btnTitle==='Memvalidasi...'">{{btnTitle}}</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mt-3 text-center">
+                            <div class="">
+                                <button ng-disabled="btnTitle==='Memvalidasi...'" class="btn fw-bold ipm-btn-outline-primary col-sm-8 px-4 w-100 rounded-0" ng-click="cancelSubmit()">Kembali</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

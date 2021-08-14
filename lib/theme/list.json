@@ -1,0 +1,77 @@
+[
+    {
+        "n": "IPM Default",
+        "f": "ipm-default",
+        "s": {"color":"#8d1007", "background-color":"#f44336"}
+    },
+    {
+        "n": "Default",
+        "f": "default",
+        "s": {"color":"#8d1007", "background-color":"#f44336"}
+    },
+    {
+        "n": "Blue",
+        "f": "blue",
+        "s": {"color":"#:#fff", "background-color":"#2196f3"}
+    },
+    {
+        "n": "Coconut Milk",
+        "f": "coconutmilk",
+        "s": {"color":"#958456", "background-color":"#f0ede5"}
+    },
+    {
+        "n": "Green",
+        "f": "green",
+        "s": {"color":"#265728", "background-color":"#4caf50"}
+    },
+    {
+        "n": "Indigo",
+        "f": "indigo",
+        "s": {"color":"#20295b", "background-color":"#3f51b5"}
+    },
+    {
+        "n": "Orange",
+        "f": "orange",
+        "s": {"color":"#804d00", "background-color":"#ff9800"}
+    },
+    {
+        "n": "Pink",
+        "f": "pink",
+        "s": {"color":"#790c30", "background-color":"#ed4d82"}
+    },
+    {
+        "n": "Red",
+        "f": "red",
+        "s": {"color":"#8d1007", "background-color":"#f44336"}
+    },
+    {
+        "n": "Red 2",
+        "f": "red2",
+        "s": {"color":"#8d1007", "background-color":"#f44336"}
+    },
+    {
+        "n": "Yellow",
+        "f": "yellow",
+        "s": {"color":"#9e8e00", "background-color":"#ffeb3b"}
+    },
+    {
+        "n": "Grey",
+        "f": "grey",
+        "s": {"color":"#4f4f4f", "background-color":"#9e9e9e"}
+    },
+    {
+        "n": "Dark Grey",
+        "f": "darkgrey",
+        "s": {"color":"#303030", "background-color":"#616161"}
+    },
+    {
+        "n": "Dark",
+        "f": "black",
+        "s": {"color":"#fff", "background-color":"#000000"}
+    },
+    {
+        "n": "Light",
+        "f": "white",
+        "s": {"color":"#808080", "background-color":"#fff"}
+    }
+]

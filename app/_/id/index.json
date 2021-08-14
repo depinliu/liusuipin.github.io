@@ -1,0 +1,20 @@
+{
+  "a": "Tutup Menu",
+  "b": "Diperkuat oleh",
+  "c": "Selamat datang,",
+  "d": "Menu",
+  "e": [
+    {
+      "a": "https://angularjs.org",
+      "b": "AngularJS "
+    },
+    {
+      "a": "https://www.w3schools.com/w3css/default.asp",
+      "b": "w3.css "
+    },
+    {
+      "a": "https://fontawesome.com",
+      "b": "Font Awesome "
+    }
+  ]
+}

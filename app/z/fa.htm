@@ -1,0 +1,8 @@
+<h1><i class="fa fa-cog fa-fw"></i> Settings</h1>
+<!-- <span ng-repeat="a in fa" ng-init="idx = (($index>0) && ($index % 9)==0)?'':'-middle'" class="w3-cell{{idx}} w3-tooltip">
+    <i class="fa {{a}} fa-5x"></i><span class="w3-text">{{a}}</span>
+</span> -->
+Last 10 Clicked:
+<span ng-repeat="s in sel" class="w3-cell-middle w3-tooltip"><i class="fa {{s}} fa-5x" ng-click="cl(s)"></i> <span style="position:absolute;left:0;bottom:18px" class="w3-text w3-tag w3-yellow">{{s}}</span>&nbsp;&nbsp;&nbsp;</span>
+<br>
+<span ng-repeat="a in fa" class="w3-cell-middle w3-tooltip"><i class="fa {{a}} fa-5x" ng-click="cl(a)"></i></span>

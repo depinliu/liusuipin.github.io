@@ -1,0 +1,8 @@
+{
+    "lOpt": [
+        {"i": "en", "d": "English"}, 
+        {"i": "id", "d": "Indonesia"}
+    ],
+    "lDef": "en",
+    "lDir": "app/_/"
+}

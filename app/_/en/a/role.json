@@ -1,0 +1,10 @@
+{
+    "_i": "lock",
+    "_t": "Login",
+    "a": "Group Name",
+    "b": "Description",
+    "c": "Add new Role",
+    "d": "Edit Role",
+    "e": "Save",
+    "f": "Delete Role"
+  }

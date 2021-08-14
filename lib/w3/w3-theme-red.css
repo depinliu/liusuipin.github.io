@@ -1,0 +1,22 @@
+.thm-l5 {color:#000 !important; background-color:#fef4f3 !important}
+.thm-l4 {color:#000 !important; background-color:#fdd9d6 !important}
+.thm-l3 {color:#000 !important; background-color:#fbb3ae !important}
+.thm-l2 {color:#000 !important; background-color:#f98d85 !important}
+.thm-l1 {color:#fff !important; background-color:#f6665c !important}
+.thm-d1 {color:#fff !important; background-color:#f32617 !important}
+.thm-d2 {color:#fff !important; background-color:#e11a0c !important}
+.thm-d3 {color:#fff !important; background-color:#c5170a !important}
+.thm-d4 {color:#fff !important; background-color:#a91409 !important}
+.thm-d5 {color:#fff !important; background-color:#8d1007 !important}
+
+.thm-light {color:#000 !important; background-color:#fef4f3 !important}
+.thm-dark {color:#fff !important; background-color:#8d1007 !important}
+.thm-action {color:#fff !important; background-color:#8d1007 !important}
+
+.thm {color:#fff !important; background-color:#f44336 !important}
+.thm-txt {color:#f44336 !important}
+.thm-border {border-color:#f44336 !important}
+
+.thm-hover:hover {color:#fff !important; background-color:#f44336 !important}
+.thm-txt-hover:hover {color:#f44336 !important}
+.thm-border-hover:hover {border-color:#f44336 !important}
