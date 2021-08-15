@@ -272,7 +272,7 @@ window._CFG = {
                         t: 0,
                         r: "/donors",
                         i: "bi-people",
-                        d: "Donors",
+                        d: "Pendonor",
                         c: []
                     },
                     {
@@ -332,7 +332,7 @@ window._CFG = {
                         t: 0,
                         r: "/donors",
                         i: "bi-people",
-                        d: "Donors",
+                        d: "Pendonor",
                         c: []
                     },
                     {
@@ -366,7 +366,7 @@ window._CFG = {
                         t: 0,
                         r: "/donors",
                         i: "bi-people",
-                        d: "Donors",
+                        d: "Pendonor",
                         c: []
                     },
                     {
@@ -413,7 +413,7 @@ window._CFG = {
                         t: 0,
                         r: "/donors",
                         i: "bi-people",
-                        d: "Donors",
+                        d: "Pendonor",
                         c: []
                     },
                     {
@@ -466,7 +466,7 @@ window._CFG = {
                         t: 0,
                         r: "/donors",
                         i: "bi-people",
-                        d: "Donors",
+                        d: "Pendonor",
                         c: []
                     }
                 ]
