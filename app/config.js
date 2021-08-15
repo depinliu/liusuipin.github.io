@@ -82,14 +82,14 @@ window._CFG = {
                 b: ["landing/landing.js", true] 
             }
         }],
-        ["/events", {
-            c: "cEvents",
-            u: "events/events.html",
-            s: {
-                // a: "a/login.txt"
-                b: ["events/events.js", true] 
-            }
-        }],
+        // ["/events", {
+        //     c: "cEvents",
+        //     u: "events/events.html",
+        //     s: {
+        //         // a: "a/login.txt"
+        //         b: ["events/events.js", true] 
+        //     }
+        // }],
         ["/sign-in", {
             c: "cSignIn",
             u: "auth/sign-in.html",
@@ -154,6 +154,34 @@ window._CFG = {
             p: "2"
         }],
 
+        ["/events", {
+            c: "cEvents",
+            u: "events/events.html",
+            s: {
+                // a: "a/login.txt"
+                b: ["events/events.js", true] 
+            },
+            p: "2"
+        }],
+        ["/donors", {
+            c: "cDonors",
+            u: "donors/donors.html",
+            s: {
+                // a: "a/login.txt"
+                b: ["donors/donors.js", true] 
+            },
+            p: "2"
+        }],
+        ["/agency", {
+            c: "cAgency",
+            u: "agency/agency.html",
+            s: {
+                // a: "a/login.txt"
+                b: ["agency/agency.js", true] 
+            },
+            p: "2"
+        }],
+
         ["/master/province", {
             c: "cProvince",
             u: "master/province.html",
@@ -210,7 +238,7 @@ window._CFG = {
                         t: 0,
                         r: "/events",
                         i: "bi-megaphone",
-                        d: "Event",
+                        d: "Kegiatan",
                         c: [ ]
                     },
                     {
@@ -222,9 +250,9 @@ window._CFG = {
                     },
                     {
                         t: 0,
-                        r: "/institutions",
+                        r: "/agency",
                         i: "bi-building",
-                        d: "Institusi",
+                        d: "Instansi",
                         c: []
                     },
                     {
@@ -270,7 +298,7 @@ window._CFG = {
                         t: 1,
                         r: "/events",
                         i: "bi-megaphone",
-                        d: "Event",
+                        d: "Kegiatan",
                         c: [ ]
                     },
                     {
@@ -282,9 +310,9 @@ window._CFG = {
                     },
                     {
                         t: 0,
-                        r: "/institutions",
+                        r: "/agency",
                         i: "bi-building",
-                        d: "Institusi",
+                        d: "Instansi",
                         c: []
                     }
                 ]
@@ -304,7 +332,7 @@ window._CFG = {
                         t: 1,
                         r: "/events",
                         i: "bi-megaphone",
-                        d: "Event",
+                        d: "Kegiatan",
                         c: [ ]
                     },
                     {
@@ -316,9 +344,9 @@ window._CFG = {
                     },
                     {
                         t: 0,
-                        r: "/institutions",
+                        r: "/agency",
                         i: "bi-building",
-                        d: "Institusi",
+                        d: "Instansi",
                         c: []
                     }
                 ]
@@ -338,7 +366,7 @@ window._CFG = {
                         t: 1,
                         r: "",
                         i: "bi-megaphone",
-                        d: "Event",
+                        d: "Kegiatan",
                         c: [
                             {
                                 t: 0,
@@ -363,9 +391,9 @@ window._CFG = {
                     },
                     {
                         t: 0,
-                        r: "/institutions",
+                        r: "/agency",
                         i: "bi-building",
-                        d: "Institusi",
+                        d: "Instansi",
                         c: []
                     }
                 ]
@@ -385,7 +413,7 @@ window._CFG = {
                         t: 1,
                         r: "",
                         i: "bi-megaphone",
-                        d: "Event",
+                        d: "Kegiatan",
                         c: [
                             {
                                 t: 0,

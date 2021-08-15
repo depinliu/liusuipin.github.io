@@ -146,13 +146,123 @@ a {
 }
 
 /* desktop */
-@media (min-width: 770px) {}
+@media (min-width: 770px) {
+  .left-sidebar {
+    width: 250px !important;
+    height: 100vh;
+    overflow: auto;
+    box-shadow: 1px 0 20px rgba(0, 0, 0, .08);
+    margin-left: 0;
+  }
+  
+  .left-sidebar-close {
+    margin-left: -250px !important;
+  }
+  
+  .side-contents {
+    margin-left: 250px;
+  }
+  
+  .side-contents-full {
+    margin-left: 0px;
+  }
+  
+  .side-settings {
+    width: 300px;
+    min-height: 100vh;
+    right: 0;
+    z-index: 999999;
+    margin-right: 0;
+  }
+  
+  .side-settings-close{
+    margin-right: -300px !important;
+  }
+}
 
 /* mobile */
-@media (max-width: 769px) {}
+@media (max-width: 769px) {
+  .left-sidebar {
+    width: 250px !important;
+    height: 100vh;
+    overflow: auto;
+    box-shadow: 1px 0 20px rgba(0, 0, 0, .08);
+    margin-left: -250px;
+    z-index: 99999;
+  }
+  .left-sidebar-close {
+    margin-left: 0 !important;
+  }
+}
 
 
 /* start styling */
+
+/*.ipm-table-sticky*/
+.ipm-table-sticky{
+  max-height: 530px;
+  overflow: auto;
+}
+.ipm-table-sticky table {
+  width: 100%;
+  border-collapse: separate; /* Don't collapse */
+  /*border-spacing: 0;*/
+}
+
+.ipm-table-sticky table th {
+  border: 1px solid inherit;
+}
+
+.ipm-table-sticky table td {
+  border: 1px solid #dee2e6;
+}
+
+.ipm-table-sticky table th:first-child,
+.ipm-table-sticky table td:first-child {
+  border: 1px solid inherit;
+}
+
+.ipm-table-sticky table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa;
+  /*z-index: 1;*/
+  border: 1px solid #dee2e6;
+}
+
+.ipm-table-sticky table tfoot td {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background-color: #f8f9fa;
+  /*z-index: 1;*/
+}
+
+.ipm-table-sticky table > :not(:last-child) > :last-child > * {
+  border-bottom-color: #dee2e6;
+}
+
+.sticky-top-second {
+  position: sticky !important;
+  top: 33px !important;
+  border-bottom: 1px solid #dee2e6 !important;
+}
+
+.sticky-col {
+  position: -webkit-sticky;
+  position: sticky;
+  /* background-color: #f8f9fa !important; */
+  z-index: 4;
+  left: 0;
+}
+
+.ipm-table-sticky table thead th > .sticky-col {
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #f8f9fa;
+  border: 1px solid #dee2e6;
+}
 
 ion-icon {
   display: flex !important
@@ -282,37 +392,7 @@ ion-icon {
   background-color:lightgray;
 }
 
-.left-sidebar {
-  width: 250px !important;
-  height: 100vh;
-  overflow: auto;
-  box-shadow: 1px 0 20px rgba(0, 0, 0, .08);
-  margin-left: 0;
-}
 
-.left-sidebar-close {
-  margin-left: -250px !important;
-}
-
-.side-contents {
-  margin-left: 250px;
-}
-
-.side-contents-full {
-  margin-left: 0px;
-}
-
-.side-settings {
-  width: 300px;
-  min-height: 100vh;
-  right: 0;
-  z-index: 999999;
-  margin-right: 0;
-}
-
-.side-settings-close{
-  margin-right: -300px !important;
-}
 
 /* here is the trick */
 

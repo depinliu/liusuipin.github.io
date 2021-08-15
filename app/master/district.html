@@ -15,13 +15,281 @@
 </div>
 
 <div class="container-fluid my-4">
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="card">
-          <div class="card-body">
-            
-          </div>
+    <div class="row mt-3">
+        <div class="col-sm-12">
+            <div class="card">
+                <!-- <div class="card-header">
+                    <div class="row">
+                        <div class="col-auto my-auto">
+                            <h5 class="fw-bold mb-0">Daftar akun provinsi</h5>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-auto">
+                            <button class="btn ipm-btn-primary fw-bold" ng-click="showModalAddAccount(1)">+ Tambah Akun</button>
+                        </div>
+                        <div class="col-auto my-auto ms-auto">
+                            <div class="row">
+                                <div class="col-auto my-auto">
+                                    <select class="form-select cursor-pointer" aria-label="Default select example">
+                                        <option selected disabled>-- Pilih Provinsi --</option>
+                                        <option value="1">DKI Jakarta</option>
+                                        <option value="2">Bali</option>
+                                    </select>
+                                </div>
+                                <div class="col-auto my-auto">
+                                    <input type="search" class="form-control" ng-model="search" placeholder="Cari...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive font-14 ipm-table-sticky">
+                        <table class="table table-bordered table-sm">
+                            <thead class="bg-white">
+                                <tr>
+                                    <th scope="col" class="z-index-1" rowspan="1" style="width: 130px;">
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Kabupaten
+                                            </div>
+                                            <div class="col-auto my-auto ms-auto text-end cursor-pointer" ng-click="setOrderFilter('name')">
+                                                <i class="fa fa-sort"></i>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="align-top z-index-1" rowspan="1">
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Email
+                                            </div>
+                                            <div class="col-auto my-auto ms-auto text-end cursor-pointer" ng-click="setOrderFilter('email')">
+                                                <i class="fa fa-sort"></i>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="align-top z-index-1" rowspan="1">
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Nama Pengguna
+                                            </div>
+                                            <div class="col-auto my-auto ms-auto text-end cursor-pointer" ng-click="setOrderFilter('username')">
+                                                <i class="fa fa-sort"></i>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="align-top z-index-1" rowspan="1">
+                                        <div class="row">
+                                            <div class="col my-auto">
+                                                Kata Sandi
+                                            </div>
+                                            <div class="col-auto my-auto ms-auto text-end cursor-pointer" ng-click="setOrderFilter('password')">
+                                                <i class="fa fa-sort"></i>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th scope="col" class="align-top z-index-1 text-start" rowspan="2">Status</th>
+                                    <th scope="col" rowspan="2" class="align-top text-center z-index-1 px-1">Aksi</th>
+                                </tr>
+                                <!-- <tr>
+                                    <th scope="col" class="sticky-top-second z-index-1">
+                                        <input placeholder="Cari..." type="search" ng-model="sMailCode" name="type" class="form-control">
+                                    </th>
+                                    <th scope="col" class="sticky-top-second z-index-1">
+                                        <input placeholder="Cari..." type="search" ng-model="sMailName" name="type" class="form-control">
+                                    </th>
+                                </tr> -->
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in provinces | filter: search | orderBy:orderFilter"  class="animated fadeIn">
+                                    <td scope="row">{{row.name}}</td>
+                                    <td>{{row.email}}</td>
+                                    <td>{{row.username}}</td>
+                                    <td>{{row.password}}</td>
+                                    <td class="text-center">
+                                        <div class="form-check form-switch d-flex align-items-center">
+                                            <input class="form-check-input cursor-pointer" ng-model="row.isActive" type="checkbox" id="mailStatus">
+                                        </div>
+                                    </td>
+                                    <td class="text-center font-18">
+                                        <div class="btn-group font-14" role="group">
+                                            <button ng-click="showModalAddAccount(2, row)" type="button" class="btn btn-outline-muted icon-hover" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit Surat">
+                                                <i class="bi bi-pencil-square text-success"></i>
+                                            </button>
+                                            <button ng-click="showDeleteModal(row)" type="button" class="btn btn-outline-muted icon-hover" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus Surat">
+                                                <i class="bi bi-x-circle text-danger"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                    <tr ng-if="!isLoad && mails.length === 0">
+                                        <td colspan="6" class="py-5 animated fadeIn text-center">
+                                            <div class="container">
+                                                <div class="row">
+                                                    <div class="col-auto my-auto ms-auto">
+                                                        <img src="./media/illustrations/nodata.svg" width="100" alt="">
+                                                    </div>
+                                                    <div class="col-auto my-auto me-auto">
+                                                        <h4>No Data!</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td colspan="6" class="py-5 text-center" ng-if="isLoad">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="spinner-grow text-success spinner-grow-sm" role="status">
+                                                            <span class="visually-hidden">Loading...</span>
+                                                        </div>
+                                                        <div class="spinner-grow text-success spinner-grow-sm mx-3" role="status">
+                                                            <span class="visually-hidden">Loading...</span>
+                                                        </div>
+                                                        <div class="spinner-grow text-success spinner-grow-sm" role="status">
+                                                            <span class="visually-hidden">Loading...</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
+</div>
+
+
+<!-- Modal Request -->
+<div class="modal fade" id="modalAddAccount" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold" id="exampleModal">{{modalType === 1 ? 'Tambah': 'Edit'}} Akun</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form name="myForm">
+                            <div class="mb-3">
+                                <label for="provinsi" class="form-label fw-bold text-muted">Nama Kabupaten<span class="text-danger">*</span></label>
+                                <!-- <input class="form-control"
+                                        type="text"
+                                        name="provinsi"
+                                        id="provinsi"
+                                        placeholder="Masukkan nama template surat..."
+                                        ng-class="{'is-invalid': myForm.provinsi.$invalid && myForm.provinsi.$touched}"
+                                        ng-model="form.mailName"
+                                        required> -->
+                                <select class="form-select cursor-pointer" aria-label="Default select example">
+                                    <option selected disabled>-- Pilih Kabupaten --</option>
+                                    <option value="1">Jakarta Timur</option>
+                                    <option value="2">Jakarta Barat</option>
+                                </select>
+                                <div class="invalid-feedback" ng-if="myForm.provinsi.$touched && myForm.provinsi.$error.required && myForm.provinsi.$invalid">
+                                    Provinsi harus diisi.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label fw-bold text-muted">Email<span class="text-danger">*</span></label>
+                                <input class="form-control"
+                                        type="text"
+                                        name="email"
+                                        id="email"
+                                        placeholder="Masukkan alamat email..."
+                                        ng-class="{'is-invalid': myForm.email.$invalid && myForm.email.$touched}"
+                                        ng-model="form.email"
+                                        required>
+                                <div class="invalid-feedback" ng-if="myForm.email.$touched && myForm.email.$error.required && myForm.email.$invalid">
+                                    Email harus diisi.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="namapengguna" class="form-label fw-bold text-muted">Nama Pengguna<span class="text-danger">*</span></label>
+                                <input class="form-control"
+                                        type="text"
+                                        name="namapengguna"
+                                        id="namapengguna"
+                                        placeholder="Masukkan nama pengguna..."
+                                        ng-class="{'is-invalid': myForm.namapengguna.$invalid && myForm.namapengguna.$touched}"
+                                        ng-model="form.username"
+                                        required>
+                                <div class="invalid-feedback" ng-if="myForm.namapengguna.$touched && myForm.namapengguna.$error.required && myForm.namapengguna.$invalid">
+                                    Nama pengguna harus diisi.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="katasandi" class="form-label fw-bold text-muted">Kata Sandi<span class="text-danger">*</span></label>
+                                <input class="form-control"
+                                        type="text"
+                                        name="katasandi"
+                                        id="katasandi"
+                                        placeholder="Masukkan kata sandi..."
+                                        ng-class="{'is-invalid': myForm.katasandi.$invalid && myForm.katasandi.$touched}"
+                                        ng-model="form.password"
+                                        required>
+                                <div class="invalid-feedback" ng-if="myForm.katasandi.$touched && myForm.katasandi.$error.required && myForm.katasandi.$invalid">
+                                    Kata sandi harus diisi.
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row w-100">
+                    <div class="col-sm-6 text-center mx-auto">
+                        <div class="">
+                            <button class="btn fw-bold ipm-btn-primary col-sm-8 px-4 w-100">TAMBAH AKUN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Ensure -->
+<div class="modal fade" id="deleteModal" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <!-- <div class="modal-header">
+                <h4 class="modal-title" id="exampleModal">Confirmation</h4>
+            </div> -->
+            <div class="modal-body py-5">
+                <div class="container-fluid">
+                    <div class="row mt-3">
+                        <div class="col-sm-12 text-center">
+                            <img src="../../m/illustration/delete.svg" width="280" />
+                            <h6 class="fw-bold mt-4">Anda yakin ingin menghapus akun <span class="fw-bold text-danger">{{delete.name}}</span>?</h6>
+                            <p class="mb-0 text-secondary">Data yang dihapus tidak dapat dipulihkan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row w-100">
+                    <div class="col-sm-6 text-center">
+                        <div class="">
+                            <button ng-disabled="btnTitle==='Please wait...'" class="btn fw-bold btn-outline-danger col-sm-8 px-4 w-100">{{btnDelete}}</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 text-center">
+                        <div class="">
+                            <button ng-disabled="btnTitle==='Please wait...'" class="btn fw-bold btn-danger col-sm-8 px-4 w-100" data-bs-dismiss="modal">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
