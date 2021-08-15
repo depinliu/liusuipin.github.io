@@ -32,7 +32,36 @@ function($scope, $rootScope, $location, $window) {
         bloodType: "O",
         lastDonor: new Date("2021-08-12"),
         province: "DKI Jakarta",
-        isActive: true
+        district: "Jakarta Barat",
+        subdistrict: "Palmerah",
+        isActive: true,
+        history: [
+            {
+                by: "PT Inti Bangun Sejahtera, Tbk",
+                date: new Date("2021-08-12"),
+                location: "Gedung IBS Riau",
+                heat: "105 bmp",
+                glucose: "105 bmp",
+                bloodPreassure: "105 mmHg",
+                bloodOxygen: "97%",
+                hemoglobin: "12 g/dL",
+                weight: "100 kg",
+                donate: "1 L"
+            },
+            {
+                by: "KMHB UNJ",
+                date: new Date("2021-08-12"),
+                location: "Pura Aditya Jaya",
+                heat: "105 bmp",
+                glucose: "105 bmp",
+                bloodPreassure: "105 mmHg",
+                bloodOxygen: "97%",
+                hemoglobin: "12 g/dL",
+                weight: "100 kg",
+                donate: "1 L"
+            }
+        ],
+        totalDonate: "4L"
     },
     {
         nik: 19030103011294,
@@ -41,15 +70,45 @@ function($scope, $rootScope, $location, $window) {
         email: "denis@gmail.com",
         bloodType: "A+",
         lastDonor:new Date("2021-08-12"),
-        province: "Bali",
-        isActive: true
+        province: "DKI Jakarta",
+        district: "Jakarta Timur",
+        subdistrict: "Matraman",
+        isActive: true,
+        history: [
+            {
+                by: "PT Inti Bangun Sejahtera, Tbk",
+                date: new Date("2021-08-12"),
+                location: "Gedung IBS Riau",
+                heat: "105 bmp",
+                glucose: "105 bmp",
+                bloodPreassure: "105 mmHg",
+                bloodOxygen: "97%",
+                hemoglobin: "12 g/dL",
+                weight: "100 kg",
+                donate: "1 L"
+            },
+            {
+                by: "KMHB UNJ",
+                date: new Date("2021-08-12"),
+                location: "Pura Aditya Jaya",
+                heat: "105 bmp",
+                glucose: "105 bmp",
+                bloodPreassure: "105 mmHg",
+                bloodOxygen: "97%",
+                hemoglobin: "12 g/dL",
+                weight: "100 kg",
+                donate: "1 L"
+            }
+        ],
+        totalDonate: "4L"
     }]
 
-    let modalAddAccount = new bootstrap.Modal(document.getElementById("modalAddAccount"), { backdrop: 'static' });
-    $scope.showModalAddAccount = function (type, data) {
+    let modalDetailUser = new bootstrap.Modal(document.getElementById("modalDetailUser"), { backdrop: 'static' });
+    $scope.showDetailUser = function (type, data) {
         console.log(type, data);
         $scope.modalType = type
-        modalAddAccount.show();
+        $scope.modalData = data
+        modalDetailUser.show();
     }
 
     let deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"), { backdrop: 'static' });

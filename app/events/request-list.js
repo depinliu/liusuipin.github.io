@@ -5,11 +5,11 @@ upd : lwx 20180521
 ver : 0.2
 */
 
-appController('cEvents', [
+appController('cRequestList', [
     '$scope', '$rootScope', '$location', '$window',
 function($scope, $rootScope, $location, $window) {
-    $scope.setTitle("Kegiatan Donor Darah","cog");
-    $scope.title = "Kegiatan Donor Darah"
+    $scope.setTitle("Daftar Permintaan Kegiatan","cog");
+    $scope.title = "Daftar Permintaan Kegiatan"
     $rootScope.activePath = $location.path();
 
     

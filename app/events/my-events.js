@@ -5,11 +5,11 @@ upd : lwx 20180521
 ver : 0.2
 */
 
-appController('cEvents', [
+appController('cMyEvents', [
     '$scope', '$rootScope', '$location', '$window',
 function($scope, $rootScope, $location, $window) {
-    $scope.setTitle("Kegiatan Donor Darah","cog");
-    $scope.title = "Kegiatan Donor Darah"
+    $scope.setTitle("Kegiatan Saya","cog");
+    $scope.title = "Kegiatan Saya"
     $rootScope.activePath = $location.path();
 
     

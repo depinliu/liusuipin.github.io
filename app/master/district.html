@@ -180,7 +180,19 @@
                     <div class="col-sm-12">
                         <form name="myForm">
                             <div class="mb-3">
-                                <label for="provinsi" class="form-label fw-bold text-muted">Nama Kabupaten<span class="text-danger">*</span></label>
+                                <label for="provinsi" class="form-label fw-bold text-muted">Provinsi<span class="text-danger">*</span></label>
+                                
+                                <select class="form-select cursor-pointer" aria-label="Default select example">
+                                    <option selected disabled>-- Pilih Provinsi --</option>
+                                    <option value="1">DKI Jakarta</option>
+                                    <option value="2">Bali</option>
+                                </select>
+                                <div class="invalid-feedback" ng-if="myForm.provinsi.$touched && myForm.provinsi.$error.required && myForm.provinsi.$invalid">
+                                    Provinsi harus diisi.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="provinsi" class="form-label fw-bold text-muted">Kabupaten<span class="text-danger">*</span></label>
                                 <!-- <input class="form-control"
                                         type="text"
                                         name="provinsi"
@@ -195,7 +207,7 @@
                                     <option value="2">Jakarta Barat</option>
                                 </select>
                                 <div class="invalid-feedback" ng-if="myForm.provinsi.$touched && myForm.provinsi.$error.required && myForm.provinsi.$invalid">
-                                    Provinsi harus diisi.
+                                    Kabupaten harus diisi.
                                 </div>
                             </div>
                             <div class="mb-3">

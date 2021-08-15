@@ -5,7 +5,7 @@
                 <div class="col-auto">
                     <h4>{{title}}</h4>
                     <ol class="breadcrumb bg-white p-0 mb-0">
-                        <li class="breadcrumb-item"><a href="/">Data Master</a></li>
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
                     </ol>
                 </div>
@@ -138,7 +138,7 @@
                                     </td>
                                     <td class="text-center font-18">
                                         <div class="btn-group font-14" role="group">
-                                            <button ng-click="showDetailUser(1, row)" type="button" class="btn btn-outline-muted icon-hover" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Detail">
+                                            <button ng-click="showDetailUser(2, row)" type="button" class="btn btn-outline-muted icon-hover" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Detail">
                                                 <i class="bi bi-person-square text-primary"></i>
                                             </button>
                                             <!-- <button ng-click="showModalAddAccount(2, row)" type="button" class="btn btn-outline-muted icon-hover" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit">
@@ -195,83 +195,129 @@
 
 
 <!-- Modal Request -->
-<div class="modal fade" id="modalAddAccount" data-bs-backdrop="static">
+<div class="modal fade" id="modalDetailUser" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fw-bold" id="exampleModal">{{modalType === 1 ? 'Tambah': 'Edit'}} Akun</h5>
+                <h5 class="modal-title fw-bold" id="exampleModal">{{modalType === 1 ? 'Tambah': 'Detail'}} Pendonor</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="row">
+            <div class="modal-body" ng-init="_tab = 1">
+                <div class="row border-bottom">
+                    <div class="col-auto py-2 cursor-pointer" ng-click="_tab = 1" ng-class="{'ipm-border-bottom fw-bold ipm-text-primary': _tab === 1}">
+                        Data Pendonor
+                    </div>
+                    <div class="col-auto py-2 cursor-pointer" ng-click="_tab = 2" ng-class="{'ipm-border-bottom fw-bold ipm-text-primary': _tab === 2}">
+                        Riwayat Donor
+                    </div>
+                </div>
+                <div class="row mt-3" ng-show="_tab === 1">
                     <div class="col-sm-12">
                         <form name="myForm">
                             <div class="mb-3">
-                                <label for="provinsi" class="form-label fw-bold text-muted">Nama Kabupaten<span class="text-danger">*</span></label>
-                                <!-- <input class="form-control"
+                                <label for="provinsi" class="form-label fw-bold text-muted">NIK</label>
+                                <input class="form-control"
+                                        readonly
                                         type="text"
-                                        name="provinsi"
-                                        id="provinsi"
-                                        placeholder="Masukkan nama template surat..."
-                                        ng-class="{'is-invalid': myForm.provinsi.$invalid && myForm.provinsi.$touched}"
-                                        ng-model="form.mailName"
-                                        required> -->
-                                <select class="form-select cursor-pointer" aria-label="Default select example">
-                                    <option selected disabled>-- Pilih Kabupaten --</option>
-                                    <option value="1">Jakarta Timur</option>
-                                    <option value="2">Jakarta Barat</option>
-                                </select>
-                                <div class="invalid-feedback" ng-if="myForm.provinsi.$touched && myForm.provinsi.$error.required && myForm.provinsi.$invalid">
-                                    Provinsi harus diisi.
-                                </div>
+                                        ng-model="modalData.nik">
                             </div>
                             <div class="mb-3">
-                                <label for="email" class="form-label fw-bold text-muted">Email<span class="text-danger">*</span></label>
+                                <label for="provinsi" class="form-label fw-bold text-muted">Nama</label>
                                 <input class="form-control"
+                                        readonly
                                         type="text"
-                                        name="email"
-                                        id="email"
-                                        placeholder="Masukkan alamat email..."
-                                        ng-class="{'is-invalid': myForm.email.$invalid && myForm.email.$touched}"
-                                        ng-model="form.email"
-                                        required>
-                                <div class="invalid-feedback" ng-if="myForm.email.$touched && myForm.email.$error.required && myForm.email.$invalid">
-                                    Email harus diisi.
-                                </div>
+                                        ng-model="modalData.name">
                             </div>
                             <div class="mb-3">
-                                <label for="namapengguna" class="form-label fw-bold text-muted">Nama Pengguna<span class="text-danger">*</span></label>
+                                <label for="provinsi" class="form-label fw-bold text-muted">Nama Pengguna</label>
                                 <input class="form-control"
+                                        readonly
                                         type="text"
-                                        name="namapengguna"
-                                        id="namapengguna"
-                                        placeholder="Masukkan nama pengguna..."
-                                        ng-class="{'is-invalid': myForm.namapengguna.$invalid && myForm.namapengguna.$touched}"
-                                        ng-model="form.username"
-                                        required>
-                                <div class="invalid-feedback" ng-if="myForm.namapengguna.$touched && myForm.namapengguna.$error.required && myForm.namapengguna.$invalid">
-                                    Nama pengguna harus diisi.
-                                </div>
+                                        ng-model="modalData.username">
                             </div>
                             <div class="mb-3">
-                                <label for="katasandi" class="form-label fw-bold text-muted">Kata Sandi<span class="text-danger">*</span></label>
+                                <label for="provinsi" class="form-label fw-bold text-muted">Email</label>
                                 <input class="form-control"
+                                        readonly
                                         type="text"
-                                        name="katasandi"
-                                        id="katasandi"
-                                        placeholder="Masukkan kata sandi..."
-                                        ng-class="{'is-invalid': myForm.katasandi.$invalid && myForm.katasandi.$touched}"
-                                        ng-model="form.password"
-                                        required>
-                                <div class="invalid-feedback" ng-if="myForm.katasandi.$touched && myForm.katasandi.$error.required && myForm.katasandi.$invalid">
-                                    Kata sandi harus diisi.
-                                </div>
+                                        ng-model="modalData.email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="provinsi" class="form-label fw-bold text-muted">Tipe Darah</label>
+                                <input class="form-control"
+                                        readonly
+                                        type="text"
+                                        ng-model="modalData.bloodType">
+                            </div>
+                            <div class="mb-3">
+                                <label for="provinsi" class="form-label fw-bold text-muted">Terakhir Donor</label>
+                                <input class="form-control"
+                                        readonly
+                                        type="text"
+                                        ng-model="modalData.lastDonor | date:'fullDate'">
+                            </div>
+                            <div class="mb-3">
+                                <label for="provinsi" class="form-label fw-bold text-muted">Provinsi</label>
+                                <input class="form-control"
+                                        readonly
+                                        type="text"
+                                        ng-model="modalData.province">
+                            </div>
+                            <div class="mb-3">
+                                <label for="provinsi" class="form-label fw-bold text-muted">Kabupaten</label>
+                                <input class="form-control"
+                                        readonly
+                                        type="text"
+                                        ng-model="modalData.district">
+                            </div>
+                            <div class="mb-3">
+                                <label for="provinsi" class="form-label fw-bold text-muted">Kecamatan</label>
+                                <input class="form-control"
+                                        readonly
+                                        type="text"
+                                        ng-model="modalData.subdistrict">
                             </div>
                         </form>
                     </div>
                 </div>
+                <div class="row mt-3" ng-show="_tab === 2">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="bg-light">
+                                    <th>No.</th>
+                                    <th>Kegiatan dari</th>
+                                    <th>Lokasi</th>
+                                    <th>Tanggal</th>
+                                    <th>Detak Jantung</th>
+                                    <th>Glukosa</th>
+                                    <th>Tekanan Darah</th>
+                                    <th>Oksigen Darah</th>
+                                    <th>Hemoglobin</th>
+                                    <th>Berat Badam</th>
+                                    <th>Total Donor</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="row in modalData.history">
+                                        <td>{{$index+1}}</td>
+                                        <td>{{row.by}}</td>
+                                        <td>{{row.location}}</td>
+                                        <td>{{row.date | date:'fullDate'}}</td>
+                                        <td>{{row.heat}}</td>
+                                        <td>{{row.glucose}}</td>
+                                        <td>{{row.bloodPreassure}}</td>
+                                        <td>{{row.bloodOxygen}}</td>
+                                        <td>{{row.hemoglobin}}</td>
+                                        <td>{{row.weight}}</td>
+                                        <td>{{row.donate}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
                 <div class="row w-100">
                     <div class="col-sm-6 text-center mx-auto">
                         <div class="">
@@ -279,7 +325,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </div>
@@ -297,7 +343,7 @@
                     <div class="row mt-3">
                         <div class="col-sm-12 text-center">
                             <img src="../../m/illustration/delete.svg" width="280" />
-                            <h6 class="fw-bold mt-4">Anda yakin ingin menghapus akun <span class="fw-bold text-danger">{{delete.name}}</span>?</h6>
+                            <h6 class="fw-bold mt-4">Anda yakin ingin menghapus <span class="fw-bold text-danger">{{delete.name}}</span>?</h6>
                             <p class="mb-0 text-secondary">Data yang dihapus tidak dapat dipulihkan.</p>
                         </div>
                     </div>

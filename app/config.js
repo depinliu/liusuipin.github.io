@@ -209,6 +209,33 @@ window._CFG = {
             },
             p: "2"
         }],
+        ["/events/request", {
+            c: "cEventRequest",
+            u: "events/request.html",
+            s: {
+                // a: "a/login.txt"
+                b: ["events/request.js", true] 
+            },
+            p: "2"
+        }],
+        ["/events/request-list", {
+            c: "cRequestList",
+            u: "events/request-list.html",
+            s: {
+                // a: "a/login.txt"
+                b: ["events/request-list.js", true] 
+            },
+            p: "2"
+        }],
+        ["/my-events", {
+            c: "cMyEvents",
+            u: "events/my-events.html",
+            s: {
+                // a: "a/login.txt"
+                b: ["events/my-events.js", true] 
+            },
+            p: "2"
+        }]
         /* ["/g/:id", {
             controller: "ctlG",
             templateUrl: "generic/g.htm"
@@ -377,7 +404,7 @@ window._CFG = {
                             {
                                 t: 0,
                                 r: "/events",
-                                d: "Semua Event",
+                                d: "Semua Kegiatan",
                                 c: []
                             }
                         ]
@@ -418,19 +445,19 @@ window._CFG = {
                             {
                                 t: 0,
                                 r: "/events/request",
-                                d: "Ajukan Event",
+                                d: "Ajukan Kegiatan",
                                 c: []
                             },
                             {
                                 t: 0,
                                 r: "/events",
-                                d: "Semua Event",
+                                d: "Semua Kegiatan",
                                 c: []
                             },
                             {
                                 t: 0,
                                 r: "/my-events",
-                                d: " Event Saya",
+                                d: " Kegiatan Saya",
                                 c: []
                             }
                         ]
