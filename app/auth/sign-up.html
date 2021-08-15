@@ -1,17 +1,17 @@
 <div class="col-sm-12 mx-auto animated fadeIn">
     <form name="myForm">
         <div class="mb-3">
-            <label for="Institusi" class="form-label fw-bold text-dark">Institusi<span class="text-danger">*</span></label>
+            <label for="instansi" class="form-label fw-bold text-dark">Instansi<span class="text-danger">*</span></label>
             <input class="form-control"
                     type="text"
-                    name="Institusi"
-                    id="Institusi"
-                    ng-class="{'is-invalid': myForm.Institusi.$invalid && myForm.Institusi.$touched}"
+                    name="instansi"
+                    id="instansi"
+                    ng-class="{'is-invalid': myForm.instansi.$invalid && myForm.instansi.$touched}"
                     ng-model="form.mailCode"
                     required>
             <small>(Perusahaan, organisasi, komunitas, atau lainnya)</small>
-            <div class="invalid-feedback" ng-if="myForm.Institusi.$touched && myForm.Institusi.$error.required && myForm.Institusi.$invalid">
-                Institusi harus diisi.
+            <div class="invalid-feedback" ng-if="myForm.instansi.$touched && myForm.instansi.$error.required && myForm.instansi.$invalid">
+                Instansi harus diisi.
             </div>
         </div>
         <div class="mb-4">
